@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sailord & Co. - Data Entry Specialist</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        /* ... (CSS sebelumnya tetap sama) ... */
+        
+        .portfolio {
+            background: white;
+            padding: 40px 0;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+        
+        .portfolio-item {
+            margin: 30px 0;
+            text-align: center;
+        }
+        
+        .before-after {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .comparison-img {
+            width: 100%;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+        }
+        
+        .video-container {
+            max-width: 800px;
+            margin: 20px auto;
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        
+        .video-demo {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        .caption {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 10px;
+            font-style: italic;
+        }
+        
+        @media (max-width: 768px) {
+            .before-after {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Sailord & Co.</h1>
+                <p class="tagline">We Enter Data, You Unlock Results</p>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- ... (Services section tetap) ... -->
+
+        <!-- 🆕 SECTION PORTFOLIO DENGAN BEFORE/AFTER -->
+        <section class="portfolio">
+            <h2 style="text-align: center; margin-bottom: 30px;">Our Work Portfolio</h2>
+            
+            <!-- Contoh 1: Data Cleansing -->
+            <div class="portfolio-item">
+                <h3>Data Cleansing Project</h3>
+                <p>Membersihkan database customer yang berantakan</p>
+                
+                <div class="before-after">
+                    <div>
+                        <h4>Before</h4>
+                        <img src="before-cleansing.jpg" alt="Data sebelum cleansing" class="comparison-img">
+                        <p class="caption">Data mentah dengan duplikat dan format tidak konsisten</p>
+                    </div>
+                    <div>
+                        <h4>After</h4>
+                        <img src="after-cleansing.jpg" alt="Data setelah cleansing" class="comparison-img">
+                        <p class="caption">Data rapi, terstruktur, dan siap analisis</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Contoh 2: PDF to Excel -->
+            <div class="portfolio-item">
+                <h3>PDF to Excel Conversion</h3>
+                <p>Konversi invoice PDF ke format Excel yang dapat diolah</p>
+                
+                <div class="before-after">
+                    <div>
+                        <h4>Before (PDF)</h4>
+                        <img src="before-pdf.jpg" alt="File PDF asli" class="comparison-img">
+                        <p class="caption">Invoice dalam format PDF tidak dapat di-edit</p>
+                    </div>
+                    <div>
+                        <h4>After (Excel)</h4>
+                        <img src="after-excel.jpg" alt="Hasil konversi Excel" class="comparison-img">
+                        <p class="caption">Data terstruktur di Excel, siap untuk analisis</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 🆕 SECTION VIDEO DEMO -->
+        <section class="portfolio">
+            <h2 style="text-align: center; margin-bottom: 30px;">Work Process Demo</h2>
+            
+            <div class="video-container">
+                <h3>Data Entry Speed & Accuracy</h3>
+                <p>Demo proses input data dengan kecepatan dan akurasi tinggi</p>
+                
+                <video controls class="video-demo" poster="video-thumbnail.jpg">
+                    <source src="data-entry-demo.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <p class="caption">Screen recording: Input 100 data dalam 5 menit dengan akurasi 100%</p>
+            </div>
+
+            <div class="video-container">
+                <h3>Excel Formula Automation</h3>
+                <p>Demo penggunaan formula Excel untuk otomatisasi data</p>
+                
+                <video controls class="video-demo">
+                    <source src="excel-automation.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung tag video.
+                </video>
+                <p class="caption">Membuat automated reporting system di Excel</p>
+            </div>
+        </section>
+
+        <!-- ... (Testimonials & Contact tetap) ... -->
+    </div>
+</body>
+</html>
