@@ -31,7 +31,7 @@
     /* === Logo === */
     .logo {
       position: absolute;
-      top: 15px;
+      top: 25px; /* Increased from 15px to move logo down */
       right: 25px;
       background: rgba(255,255,255,0.9);
       border-radius: 12px;
@@ -77,6 +77,13 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease; /* Added for hover effect */
+    }
+    
+    /* Video hover effect to make it larger */
+    .video-row video:hover {
+      transform: scale(1.05);
+      z-index: 5;
     }
 
     /* === Right Section: Images + Testimonials === */
@@ -85,18 +92,19 @@
       grid-row: 1;
       display: flex;
       justify-content: space-around;
-      align-items: flex-start; /* Changed from center to flex-start */
+      align-items: flex-start;
       gap: 10px;
+      margin-top: 30px; /* Added to move images down */
     }
     .right-top img {
       width: 48%;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      cursor: pointer; /* Add pointer cursor */
-      transition: transform 0.3s ease; /* Add transition for smooth effect */
+      cursor: pointer;
+      transition: transform 0.3s ease;
     }
     .right-top img:hover {
-      transform: scale(1.02); /* Slight zoom on hover */
+      transform: scale(1.02);
     }
 
     /* Modal for enlarged images */
@@ -132,14 +140,14 @@
       grid-row: 2;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* Changed from space-between to flex-start */
+      justify-content: flex-start;
       align-items: center;
       background: rgba(255,255,255,0.9);
       border-radius: 10px;
       padding: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       height: 100%;
-      margin-top: -20px; /* Added to move testimonial section up */
+      margin-top: -10px; /* Adjusted to move testimonial up */
     }
 
     .testimonials {
@@ -171,7 +179,7 @@
       border-radius: 6px;
       padding: 6px;
       font-size: 0.9rem;
-      box-sizing: border-box; /* Ensure padding doesn't affect width */
+      box-sizing: border-box;
     }
     button {
       background-color: #1f5eff;
@@ -188,6 +196,24 @@
       text-align: center;
       margin-top: 4px;
     }
+    
+    /* Contact info side by side */
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 5px;
+      flex-wrap: wrap;
+    }
+    
+    .contact-info a {
+      color: #1f5eff;
+      text-decoration: none;
+    }
+    
+    .contact-info a:hover {
+      text-decoration: underline;
+    }
 
     /* === Responsive === */
     @media (max-width: 900px) {
@@ -199,11 +225,15 @@
       }
       .logo {
         right: 10px;
-        top: 10px;
+        top: 15px;
         font-size: 1rem;
       }
       .video-main video, .video-row video, .right-top img {
         width: 90%;
+      }
+      .contact-info {
+        flex-direction: column;
+        gap: 5px;
       }
     }
   </style>
@@ -275,8 +305,10 @@
 
       <footer>
         Ready to transform your data into results?<br>
-        Email: <a href="mailto:boenchit06@gmail.com">boenchit06@gmail.com</a><br>
-        Telegram: <a href="https://t.me/+6281381334828">@+6281381334828</a>
+        <div class="contact-info">
+          <a href="mailto:boenchit06@gmail.com">Email: boenchit06@gmail.com</a>
+          <a href="https://t.me/+6281381334828">Telegram: +6281381334828</a>
+        </div>
       </footer>
     </div>
   </div>
@@ -302,6 +334,23 @@
         closeModal();
       }
     }
+    
+    // Video hover effect - enlarge on hover
+    document.addEventListener('DOMContentLoaded', function() {
+      const videos = document.querySelectorAll('.video-row video');
+      
+      videos.forEach(video => {
+        video.addEventListener('mouseenter', function() {
+          this.style.transform = 'scale(1.1)';
+          this.style.zIndex = '5';
+        });
+        
+        video.addEventListener('mouseleave', function() {
+          this.style.transform = 'scale(1)';
+          this.style.zIndex = '1';
+        });
+      });
+    });
   </script>
 </body>
 </html>
