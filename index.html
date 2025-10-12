@@ -28,26 +28,48 @@
       height: 95%;
     }
 
-    /* === REVISI 1: Logo lebih besar === */
+    /* === REVISI 3: Logo dengan animasi === */
     .logo {
       position: absolute;
       top: 20px;
       left: 30px;
-      background: rgba(255,255,255,0.95);
+      background: linear-gradient(135deg, #ffeb3b, #ffc107); /* Gradien kuning */
       border-radius: 8px;
-      padding: 10px 18px;
+      padding: 12px 20px;
       font-weight: 700;
-      font-size: 1.6rem; /* Diperbesar dari 1.2rem */
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      font-size: 1.6rem;
+      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
       text-align: left;
       z-index: 10;
+      animation: logoPulse 2s infinite alternate, logoFloat 3s ease-in-out infinite;
+      border: 2px solid #ff9800;
     }
     .logo span {
       display: block;
-      font-size: 0.9rem; /* Diperbesar dari 0.8rem */
-      font-weight: normal;
-      color: #555;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #333;
       margin-top: 3px;
+    }
+
+    @keyframes logoPulse {
+      0% {
+        transform: scale(1);
+        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+      }
+      100% {
+        transform: scale(1.05);
+        box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+      }
+    }
+
+    @keyframes logoFloat {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-5px);
+      }
     }
 
     /* === Left Section: Videos === */
@@ -104,7 +126,7 @@
       transform: scale(1.02);
     }
 
-    /* === REVISI 2: Modal untuk gambar yang bisa diklik === */
+    /* Modal untuk gambar */
     .modal {
       display: none;
       position: fixed;
@@ -132,37 +154,41 @@
       cursor: pointer;
     }
 
-    /* === REVISI 3: Testimonial dinaikkan === */
+    /* === REVISI 1 & 2: Testimonial lebih naik dan lebih besar === */
     .right-bottom {
       grid-column: 2;
       grid-row: 2;
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+      justify-content: flex-start; /* Diubah dari space-between */
       background: rgba(255,255,255,0.95);
       border-radius: 8px;
-      padding: 12px;
+      padding: 15px; /* Padding diperbesar */
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       height: 100%;
-      margin-top: -15px; /* DINAIKKAN dari 5px ke -15px */
+      margin-top: -25px; /* DINAIKKAN LAGI dari -15px ke -25px */
+      min-height: 280px; /* Tinggi minimum diperbesar */
     }
 
     .testimonials {
       width: 100%;
       flex: 1;
       overflow-y: auto;
-      margin-bottom: 10px;
-      font-size: 0.8rem;
+      margin-bottom: 12px; /* Margin diperbesar */
+      font-size: 0.85rem; /* Font sedikit lebih besar */
     }
     .testimonial-item {
-      margin-bottom: 6px;
-      padding: 4px;
+      margin-bottom: 8px; /* Margin diperbesar */
+      padding: 6px; /* Padding diperbesar */
+      font-style: italic;
+      line-height: 1.4;
     }
     .testimonial-author {
       text-align: right;
-      font-size: 0.75rem;
+      font-size: 0.8rem; /* Font sedikit lebih besar */
       color: #555;
-      margin-bottom: 4px;
+      margin-bottom: 6px; /* Margin diperbesar */
+      font-weight: 500;
     }
 
     /* Form sederhana */
@@ -170,19 +196,19 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 6px;
-      margin-bottom: 8px;
+      gap: 8px; /* Gap diperbesar */
+      margin-bottom: 10px; /* Margin diperbesar */
     }
     .simple-form input, .simple-form textarea {
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 4px;
-      padding: 6px;
-      font-size: 0.8rem;
+      padding: 8px; /* Padding diperbesar */
+      font-size: 0.85rem; /* Font sedikit lebih besar */
       box-sizing: border-box;
     }
     .simple-form textarea {
-      height: 40px;
+      height: 50px; /* Tinggi diperbesar */
       resize: vertical;
     }
     .submit-btn {
@@ -190,23 +216,29 @@
       color: #fff;
       border: none;
       border-radius: 4px;
-      padding: 8px;
+      padding: 10px; /* Padding diperbesar */
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.85rem;
+      font-size: 0.9rem; /* Font sedikit lebih besar */
       width: 100%;
+      transition: background-color 0.3s ease;
+    }
+    .submit-btn:hover {
+      background-color: #0d4ae3;
     }
 
     .simple-footer {
-      font-size: 0.75rem;
+      font-size: 0.8rem; /* Font sedikit lebih besar */
       text-align: center;
       color: #555;
-      line-height: 1.3;
+      line-height: 1.4;
+      margin-top: auto; /* Push ke bawah */
     }
     
     .email-link {
       color: #1f5eff;
       text-decoration: none;
+      font-weight: 500;
     }
 
     /* === Responsive === */
@@ -220,7 +252,8 @@
       .logo {
         left: 15px;
         top: 15px;
-        font-size: 1.4rem; /* Diperbesar juga di mobile */
+        font-size: 1.4rem;
+        animation: none; /* Nonaktifkan animasi di mobile */
       }
       .right-top {
         flex-direction: column;
@@ -230,7 +263,8 @@
         width: 90%;
       }
       .right-bottom {
-        margin-top: 0; /* Reset di mobile */
+        margin-top: 0;
+        min-height: auto;
       }
     }
   </style>
@@ -262,7 +296,7 @@
       </video>
     </div>
 
-    <!-- Dua gambar kanan atas - BISA DIKLIK -->
+    <!-- Dua gambar kanan atas -->
     <div class="right-top">
       <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
       <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
@@ -274,7 +308,7 @@
       <img class="modal-content" id="modalImage">
     </div>
 
-    <!-- Testimoni + form - POSISI DINAIKKAN -->
+    <!-- REVISI: Testimonial lebih naik dan lebih besar -->
     <div class="right-bottom">
       <div class="testimonials">
         <div class="testimonial-item">"Excellent attention to detail. Always delivers accurate results."</div>
@@ -299,7 +333,6 @@
   </div>
 
   <script>
-    // REVISI 2: Fungsi untuk modal gambar
     function openModal(img) {
       const modal = document.getElementById("imageModal");
       const modalImg = document.getElementById("modalImage");
@@ -311,7 +344,6 @@
       document.getElementById("imageModal").style.display = "none";
     }
 
-    // Tutup modal ketika klik di luar gambar
     window.onclick = function(event) {
       const modal = document.getElementById("imageModal");
       if (event.target === modal) {
