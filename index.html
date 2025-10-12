@@ -23,10 +23,9 @@
       display: grid;
       grid-template-columns: 65% 35%;
       grid-template-rows: 70% 30%;
-      gap: 15px;
+      gap: 10px;
       width: 95%;
       height: 95%;
-      padding: 10px;
     }
 
     /* === Logo === */
@@ -35,20 +34,19 @@
       top: 20px;
       left: 30px;
       background: rgba(255,255,255,0.95);
-      border-radius: 10px;
-      padding: 10px 20px;
-      font-weight: 700;
-      font-size: 1.4rem;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      border-radius: 8px;
+      padding: 8px 15px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       text-align: left;
       z-index: 10;
     }
     .logo span {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       font-weight: normal;
       color: #555;
-      margin-top: 2px;
     }
 
     /* === Left Section: Videos === */
@@ -62,8 +60,8 @@
     .video-main video {
       width: 96%;
       height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
     .video-row {
@@ -72,69 +70,32 @@
       display: flex;
       justify-content: space-evenly;
       align-items: center;
-      gap: 15px;
+      gap: 10px;
     }
     .video-row video {
       width: 48%;
       height: auto;
-      border-radius: 12px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease;
-    }
-    
-    .video-row video:hover {
-      transform: scale(1.05);
-      z-index: 5;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    /* === Right Section: Images === */
+    /* === REVISI: Right Section Images - SEJAJAR HORIZONTAL === */
     .right-top {
       grid-column: 2;
       grid-row: 1;
       display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: center;
-      gap: 12px;
-      margin-top: 60px;
+      flex-direction: row; /* Diubah dari column ke row */
+      justify-content: space-between; /* Gambar sejajar horizontal */
+      align-items: flex-start; /* Rata atas */
+      gap: 8px;
+      margin-top: 10px; /* Dikurangi dari 50px ke 10px */
       height: 100%;
+      padding: 0 5px;
     }
     .right-top img {
-      width: 92%;
-      border-radius: 10px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.25);
-      cursor: pointer;
-      transition: transform 0.3s ease;
-    }
-    .right-top img:hover {
-      transform: scale(1.03);
-    }
-
-    /* Modal for enlarged images */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      max-width: 85%;
-      max-height: 85%;
-      border-radius: 12px;
-    }
-    .close {
-      position: absolute;
-      top: 25px;
-      right: 40px;
-      color: #fff;
-      font-size: 45px;
-      font-weight: bold;
+      width: 48%; /* Lebar 48% untuk dua gambar sejajar */
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
       cursor: pointer;
     }
 
@@ -145,97 +106,74 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      align-items: center;
-      background: rgba(255,255,255,0.98);
-      border-radius: 12px;
-      padding: 15px;
-      box-shadow: 0 3px 12px rgba(0,0,0,0.2);
+      background: rgba(255,255,255,0.95);
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       height: 100%;
-      margin-top: 0;
-      border: 1px solid #e0e0e0;
+      margin-top: 5px;
     }
 
     .testimonials {
       width: 100%;
       flex: 1;
       overflow-y: auto;
-      margin-bottom: 12px;
-      font-size: 0.82rem;
+      margin-bottom: 10px;
+      font-size: 0.8rem;
     }
     .testimonial-item {
-      font-style: italic;
-      margin-bottom: 8px;
-      padding: 6px 8px;
-      border-left: 3px solid #1f5eff;
-      background: rgba(31, 94, 255, 0.05);
-      border-radius: 4px;
+      margin-bottom: 6px;
+      padding: 4px;
     }
     .testimonial-author {
       text-align: right;
       font-size: 0.75rem;
-      color: #666;
-      margin-bottom: 6px;
-      font-weight: 500;
+      color: #555;
+      margin-bottom: 4px;
     }
 
-    form {
+    /* Form sederhana */
+    .simple-form {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      margin-bottom: 10px;
+      gap: 6px;
+      margin-bottom: 8px;
     }
-    input, textarea {
+    .simple-form input, .simple-form textarea {
       width: 100%;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      padding: 8px 10px;
-      font-size: 0.85rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      padding: 6px;
+      font-size: 0.8rem;
       box-sizing: border-box;
-      background: #f9f9f9;
     }
-    input:focus, textarea:focus {
-      outline: none;
-      border-color: #1f5eff;
-      background: #fff;
+    .simple-form textarea {
+      height: 40px;
+      resize: vertical;
     }
-    button {
+    .submit-btn {
       background-color: #1f5eff;
       color: #fff;
       border: none;
-      border-radius: 6px;
-      padding: 10px;
+      border-radius: 4px;
+      padding: 8px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.9rem;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #0d4ae3;
-    }
-
-    footer {
-      font-size: 0.8rem;
-      text-align: center;
-      margin-top: 8px;
-      color: #555;
+      font-size: 0.85rem;
       width: 100%;
     }
-    
-    .contact-info {
-      display: block;
+
+    .simple-footer {
+      font-size: 0.75rem;
       text-align: center;
-      margin-top: 6px;
+      color: #555;
+      line-height: 1.3;
     }
     
-    .contact-info a {
+    .email-link {
       color: #1f5eff;
       text-decoration: none;
-      font-weight: 500;
-    }
-    
-    .contact-info a:hover {
-      text-decoration: underline;
     }
 
     /* === Responsive === */
@@ -245,18 +183,17 @@
         grid-template-rows: auto auto auto auto;
         height: auto;
         overflow-y: auto;
-        gap: 10px;
       }
       .logo {
         left: 15px;
         top: 15px;
-        font-size: 1.2rem;
-      }
-      .video-main video, .video-row video, .right-top img {
-        width: 95%;
       }
       .right-top {
+        flex-direction: column; /* Di mobile jadi vertikal */
         margin-top: 20px;
+      }
+      .right-top img {
+        width: 90%;
       }
     }
   </style>
@@ -288,16 +225,10 @@
       </video>
     </div>
 
-    <!-- Dua gambar kanan atas -->
+    <!-- REVISI: Dua gambar kanan atas SEJAJAR HORIZONTAL -->
     <div class="right-top">
-      <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
-      <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
-    </div>
-
-    <!-- Modal for enlarged images -->
-    <div id="imageModal" class="modal">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img class="modal-content" id="modalImage">
+      <img src="images/invoice.jpg" alt="invoice" />
+      <img src="images/operationalcost.jpg" alt="operationalcost" />
     </div>
 
     <!-- Testimoni + form -->
@@ -308,71 +239,20 @@
 
         <div class="testimonial-item">"Very professional and fast."</div>
         <div class="testimonial-author">— Andi (Oct 10, 2025)</div>
-
-        <div class="testimonial-item">"Good job, perfect time."</div>
-        <div class="testimonial-author">— Arif Wibowo (Oct 1, 2025)</div>
-
-        <div class="testimonial-item">"Nice work."</div>
-        <div class="testimonial-author">— Agus Sutardi (Jun 15, 2025)</div>
-
-        <div class="testimonial-item">"Well done."</div>
-        <div class="testimonial-author">— Anisah (Dec 16, 2025)</div>
       </div>
 
-      <form>
-        <input type="text" placeholder="Your name" required />
-        <input type="text" placeholder="Date (e.g. Oct 12, 2025)" required />
-        <textarea placeholder="Your testimonial..." rows="3" required></textarea>
-        <button type="submit">Submit</button>
-      </form>
+      <div class="simple-form">
+        <input type="text" placeholder="Your name" />
+        <input type="text" placeholder="Date (e.g Oct 12 2025)" />
+        <textarea placeholder="Your testimonial..."></textarea>
+        <button class="submit-btn">Submit</button>
+      </div>
 
-      <footer>
-        Ready to transform your data into results?<br>
-        <div class="contact-info">
-          <a href="mailto:boenchit06@gmail.com">Email: boenchit06@gmail.com</a>
-        </div>
-      </footer>
+      <div class="simple-footer">
+        Ready to transform your data into result<br>
+        Email : <a href="mailto:boenchit06@gmail.com" class="email-link">boenchit06@gmail.com</a>
+      </div>
     </div>
   </div>
-
-  <script>
-    // Function to open modal with clicked image
-    function openModal(img) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImage");
-      modal.style.display = "flex";
-      modalImg.src = img.src;
-    }
-
-    // Function to close modal
-    function closeModal() {
-      document.getElementById("imageModal").style.display = "none";
-    }
-
-    // Close modal when clicking outside the image
-    window.onclick = function(event) {
-      const modal = document.getElementById("imageModal");
-      if (event.target === modal) {
-        closeModal();
-      }
-    }
-    
-    // Video hover effect - enlarge on hover
-    document.addEventListener('DOMContentLoaded', function() {
-      const videos = document.querySelectorAll('.video-row video');
-      
-      videos.forEach(video => {
-        video.addEventListener('mouseenter', function() {
-          this.style.transform = 'scale(1.08)';
-          this.style.zIndex = '5';
-        });
-        
-        video.addEventListener('mouseleave', function() {
-          this.style.transform = 'scale(1)';
-          this.style.zIndex = '1';
-        });
-      });
-    });
-  </script>
 </body>
 </html>
