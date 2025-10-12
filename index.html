@@ -74,14 +74,14 @@
       }
     }
 
-    /* === REVISI: Video diturunkan === */
+    /* === REVISI: Video diturunkan dengan benar === */
     .video-main {
       grid-column: 1;
       grid-row: 1;
       display: flex;
       justify-content: center;
-      align-items: flex-end; /* Diubah dari center ke flex-end */
-      padding-bottom: 10px; /* Tambah padding bawah */
+      align-items: flex-start; /* Rata atas */
+      padding-top: 20px; /* Tambah padding atas untuk menurunkan */
     }
     .video-main video {
       width: 96%;
@@ -95,7 +95,7 @@
       grid-row: 2;
       display: flex;
       justify-content: space-evenly;
-      align-items: flex-start; /* Diubah dari center ke flex-start */
+      align-items: flex-start; /* Rata atas */
       gap: 10px;
       padding-top: 10px; /* Tambah padding atas */
     }
@@ -115,7 +115,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 8px;
-      margin-top: 10px;
+      margin-top: 30px; /* Gambar juga diturunkan */
       height: 100%;
       padding: 0 5px;
     }
@@ -265,7 +265,7 @@
       }
       .video-main {
         align-items: center;
-        padding-bottom: 0;
+        padding-top: 0;
       }
       .video-row {
         align-items: center;
@@ -281,7 +281,7 @@
   </div>
 
   <div class="container">
-    <!-- Video utama - POSISI DITURUNKAN -->
+    <!-- Video utama - DITURUNKAN -->
     <div class="video-main">
       <video controls autoplay muted loop playsinline>
         <source src="video/videodataentry.mp4" type="video/mp4">
@@ -289,7 +289,7 @@
       </video>
     </div>
 
-    <!-- Dua video bawah - POSISI DITURUNKAN -->
+    <!-- Dua video bawah - DITURUNKAN -->
     <div class="video-row">
       <video controls autoplay muted loop playsinline>
         <source src="video/invoice.mp4" type="video/mp4">
@@ -301,7 +301,7 @@
       </video>
     </div>
 
-    <!-- Dua gambar kanan atas -->
+    <!-- Dua gambar kanan atas - juga diturunkan -->
     <div class="right-top">
       <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
       <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
