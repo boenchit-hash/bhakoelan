@@ -74,14 +74,14 @@
       }
     }
 
-    /* === REVISI: Video diturunkan dengan benar === */
+    /* === Video utama tetap === */
     .video-main {
       grid-column: 1;
       grid-row: 1;
       display: flex;
       justify-content: center;
-      align-items: flex-start; /* Rata atas */
-      padding-top: 20px; /* Tambah padding atas untuk menurunkan */
+      align-items: flex-start;
+      padding-top: 20px;
     }
     .video-main video {
       width: 96%;
@@ -90,14 +90,15 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
+    /* === REVISI: Video bawah diturunkan lebih banyak === */
     .video-row {
       grid-column: 1;
       grid-row: 2;
       display: flex;
       justify-content: space-evenly;
-      align-items: flex-start; /* Rata atas */
+      align-items: flex-start;
       gap: 10px;
-      padding-top: 10px; /* Tambah padding atas */
+      padding-top: 30px; /* DITAMBAH dari 10px ke 30px */
     }
     .video-row video {
       width: 48%;
@@ -115,7 +116,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 8px;
-      margin-top: 30px; /* Gambar juga diturunkan */
+      margin-top: 30px;
       height: 100%;
       padding: 0 5px;
     }
@@ -269,7 +270,7 @@
       }
       .video-row {
         align-items: center;
-        padding-top: 0;
+        padding-top: 10px;
       }
     }
   </style>
@@ -281,7 +282,7 @@
   </div>
 
   <div class="container">
-    <!-- Video utama - DITURUNKAN -->
+    <!-- Video utama - TETAP -->
     <div class="video-main">
       <video controls autoplay muted loop playsinline>
         <source src="video/videodataentry.mp4" type="video/mp4">
@@ -289,7 +290,7 @@
       </video>
     </div>
 
-    <!-- Dua video bawah - DITURUNKAN -->
+    <!-- REVISI: Dua video bawah - DITURUNKAN LEBIH BANYAK -->
     <div class="video-row">
       <video controls autoplay muted loop playsinline>
         <source src="video/invoice.mp4" type="video/mp4">
@@ -301,7 +302,7 @@
       </video>
     </div>
 
-    <!-- Dua gambar kanan atas - juga diturunkan -->
+    <!-- Dua gambar kanan atas -->
     <div class="right-top">
       <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
       <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
