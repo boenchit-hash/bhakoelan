@@ -5,225 +5,238 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>boenchit — Data Entry Portfolio</title>
 <style>
-  *{box-sizing:border-box;margin:0;padding:0}
-  html,body{height:100%;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#111}
-  /* keep main view single-screen on desktop */
-  body{background:url('images/background.jpg') center/cover no-repeat fixed;display:flex;align-items:center;justify-content:center;overflow:hidden}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;color:#111}
+body{
+  background:url('images/background.jpg') center/cover no-repeat fixed;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+}
 
-  /* brand (E) larger & proportional */
-  .brand{
-    position:fixed;left:20px;top:18px;z-index:80;
-    background:rgba(255,255,255,0.92);padding:14px 20px;border-radius:14px;
-    font-weight:800;font-size:20px;color:#0b2140;box-shadow:0 8px 22px rgba(0,0,0,0.18)
-  }
-  .brand small{display:block;font-weight:600;font-size:12px;color:#2b4b6b;margin-top:4px}
+/* Logo / Brand (E) */
+.brand{
+  position:fixed;left:25px;top:25px;z-index:100;
+  background:rgba(255,255,255,0.9);
+  padding:16px 22px;border-radius:16px;
+  font-weight:800;font-size:22px;
+  color:#1c2e4a;
+  box-shadow:0 8px 20px rgba(0,0,0,0.18);
+}
+.brand small{
+  display:block;font-weight:600;font-size:13px;color:#333;margin-top:4px;
+}
 
-  /* grid that fixes positions A/B/C/D */
+/* Layout Grid */
+.stage{
+  width:100vw;height:100vh;max-width:1600px;
+  display:grid;
+  grid-template-columns: 2fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap:14px;
+  padding:100px 50px 80px;
+}
+
+/* Card styling */
+.card{
+  background:rgba(255,255,255,0.92);
+  border-radius:12px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.15);
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+
+/* Videos */
+.video-box video{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  background:#000;
+}
+
+/* Images */
+.image-box img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  cursor:pointer;
+  transition:transform .2s ease;
+}
+.image-box:hover img{transform:scale(1.04)}
+
+/* Testimonials (C) */
+.testimonials{
+  padding:16px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+.testimonials h3{margin-bottom:6px;font-size:17px;color:#222;font-weight:700}
+.list{
+  flex:1;
+  overflow-y:auto;
+  padding-right:6px;
+  margin-bottom:10px;
+}
+.list::-webkit-scrollbar{width:6px}
+.list::-webkit-scrollbar-thumb{background:#ccc;border-radius:3px}
+blockquote{
+  margin:8px 0;
+  padding:10px 12px;
+  background:#f7f7f7;
+  border-left:4px solid #d8cbb8;
+  border-radius:6px;
+  font-style:normal;
+}
+blockquote footer{display:block;margin-top:6px;font-weight:600;font-size:13px;color:#333}
+
+form{display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:6px}
+.row input{flex:1}
+input,textarea{
+  padding:8px;border:1px solid #ccc;border-radius:6px;font-size:14px
+}
+button{
+  background:#2d6cdf;color:white;border:none;
+  padding:8px;border-radius:6px;cursor:pointer;font-weight:600;
+}
+button:hover{background:#1e4fa0}
+
+/* CTA (F) */
+.cta{
+  position:fixed;right:20px;bottom:20px;z-index:100;
+  background:rgba(255,255,255,0.9);
+  padding:12px 18px;border-radius:12px;
+  box-shadow:0 6px 16px rgba(0,0,0,0.2);
+  font-size:15px;
+  line-height:1.4;
+}
+.cta a{color:#1b5fd6;text-decoration:none;font-weight:700}
+
+/* Image modal */
+.img-modal{
+  position:fixed;inset:0;display:none;
+  align-items:center;justify-content:center;
+  background:rgba(0,0,0,0.85);z-index:9999;
+}
+.img-modal img{max-width:95vw;max-height:95vh;border-radius:8px}
+
+/* Responsive */
+@media(max-width:980px){
+  body{overflow:auto}
   .stage{
-    width:100vw;height:100vh;max-width:1600px;
-    padding:90px 48px 70px;
-    display:grid;
-    grid-template-columns: 2fr 1fr;
-    grid-template-rows: 0.45fr 0.35fr 0.2fr;
-    grid-template-areas:
-      "main rightTop"
-      "bigImage rightMid"
-      "testimonials rightBottom";
-    gap:18px;
+    grid-template-columns:1fr;
+    grid-template-rows:auto;
+    padding:120px 20px 100px;
+    gap:12px;
   }
-
-  /* common card style */
-  .card{
-    background:rgba(255,255,255,0.94);
-    border-radius:12px;
-    box-shadow:0 8px 26px rgba(0,0,0,0.14);
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-
-  /* MAIN VIDEO (top-left) */
-  .main { grid-area: main; }
-  .main video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
-
-  /* RIGHT TOP (small image) */
-  .rightTop{ grid-area: rightTop; padding:12px }
-  .rightTop img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block}
-
-  /* BIG IMAGE (middle-left) = A */
-  .bigImage{ grid-area: bigImage; padding:12px }
-  .bigImage img{width:100%;height:100%;object-fit:cover;border-radius:8px;display:block;cursor:pointer}
-
-  /* RIGHT MID (middle-right) = B video */
-  .rightMid{ grid-area: rightMid; }
-  .rightMid video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
-
-  /* TESTIMONIALS (bottom-left) = C */
-  .testimonials { grid-area: testimonials; padding:14px; display:flex; flex-direction:column; gap:10px }
-  .testimonials h3{margin:0 0 6px 0;font-size:16px}
-  .list{flex:1 1 auto;overflow:auto;padding-right:6px}
-  blockquote{margin:8px 0;padding:12px;background:#f7f7f7;border-left:4px solid #d8cbb8;border-radius:8px;font-style:normal}
-  blockquote footer{display:block;margin-top:8px;font-weight:700;color:#333;font-size:13px}
-
-  /* form */
-  form{display:flex;flex-direction:column;gap:8px}
-  input,textarea{width:100%;padding:8px;border:1px solid #cfcfcf;border-radius:8px;font-size:14px}
-  .row{display:flex;gap:8px}
-  .row input{flex:1}
-  .row .date{width:38%}
-  button{background:#2d6cdf;color:white;border:none;padding:10px;border-radius:8px;cursor:pointer;font-weight:700}
-  button:hover{background:#1e4fa0}
-
-  /* RIGHT BOTTOM (D) */
-  .rightBottom{ grid-area: rightBottom; padding:12px }
-  .rightBottom video{width:100%;height:100%;object-fit:contain;background:#000;display:block}
-
-  /* CTA box (F) enlarged proportionally */
-  .cta{
-    position:fixed;right:22px;bottom:18px;z-index:80;
-    background:rgba(255,255,255,0.95);padding:12px 16px;border-radius:12px;
-    box-shadow:0 10px 26px rgba(0,0,0,0.15);font-size:14px;color:#0b2140;
-  }
-  .cta a{color:#1b5fd6;text-decoration:none;font-weight:700}
-
-  /* modal for image enlarge */
-  .img-modal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;background:rgba(0,0,0,0.86);z-index:9999}
-  .img-modal img{max-width:96vw;max-height:96vh;border-radius:8px;display:block}
-
-  /* responsive: stack on small screens (allow vertical scroll) */
-  @media (max-width:980px){
-    body{overflow:auto}
-    .stage{
-      grid-template-columns:1fr;
-      grid-template-rows: auto;
-      grid-template-areas:
-        "main"
-        "rightTop"
-        "bigImage"
-        "rightMid"
-        "testimonials"
-        "rightBottom";
-      padding:110px 18px 110px;
-      gap:12px;
-      height:auto;
-    }
-    .list{max-height:220px; overflow:auto}
-  }
+  .brand{font-size:18px;padding:12px 16px;}
+  .cta{font-size:13px;padding:10px 14px;}
+}
 </style>
 </head>
 <body>
 
-  <!-- E: enlarged brand -->
-  <div class="brand">boenchit <small>We enter data, you unlock results</small></div>
+<!-- E -->
+<div class="brand">
+  boenchit
+  <small>We enter data, you unlock results</small>
+</div>
 
-  <div class="stage">
-    <!-- MAIN (top-left) sample: videodataentry.mp4 -->
-    <div class="card main">
-      <video id="mainVideo" controls muted playsinline preload="metadata" poster="images/invoice.jpg">
-        <source src="video/videodataentry.mp4" type="video/mp4">
-        Your browser does not support video tag.
-      </video>
+<!-- Layout A–F -->
+<div class="stage">
+
+  <!-- A (Image besar kiri atas) -->
+  <div class="card image-box">
+    <img src="images/operationalcost.jpg" alt="Operational Cost" onclick="openImage(this.src)">
+  </div>
+
+  <!-- B (Video kanan atas) -->
+  <div class="card video-box">
+    <video controls muted playsinline preload="metadata" poster="images/invoice.jpg">
+      <source src="video/videodataentry.mp4" type="video/mp4">
+    </video>
+  </div>
+
+  <!-- C (Testimonial kiri tengah) -->
+  <div class="card testimonials">
+    <h3>Testimonials</h3>
+    <div class="list" id="testimonialList">
+      <blockquote>“Excellent attention to detail.”<footer>— Rina (Oct 12, 2025)</footer></blockquote>
+      <blockquote>“Very professional and fast.”<footer>— Andi (Oct 10, 2025)</footer></blockquote>
     </div>
-
-    <!-- RIGHT TOP: small image (ke kanan atas) -->
-    <div class="card rightTop">
-      <img src="images/invoice.jpg" alt="Invoice example" onclick="openImage(this.src)">
-    </div>
-
-    <!-- BIG IMAGE (A) middle-left -->
-    <div class="card bigImage">
-      <img src="images/operationalcost.jpg" alt="Operational cost example" onclick="openImage(this.src)">
-    </div>
-
-    <!-- RIGHT MID: (B) video -->
-    <div class="card rightMid">
-      <video controls muted playsinline preload="metadata" poster="images/operationalcost.jpg">
-        <source src="video/pettycash.mp4" type="video/mp4">
-      </video>
-    </div>
-
-    <!-- Testimonials (C) bottom-left with manual Date field -->
-    <div class="card testimonials" id="testimonialsCard">
-      <h3>Testimonials</h3>
-      <div class="list" id="testimonialList">
-        <!-- sample -->
-        <blockquote>“Excellent attention to detail. Always delivers accurate results.”<footer>— Rina, Freelance Partner (Oct 12, 2025)</footer></blockquote>
-        <blockquote>“Reliable and fast data entry service, highly recommended.”<footer>— Andi, Project Manager (Oct 02, 2025)</footer></blockquote>
+    <form id="testimonialForm">
+      <div class="row">
+        <input type="text" id="name" placeholder="Your name" required>
+        <input type="text" id="date" placeholder="Date (e.g. Oct 12, 2025)">
       </div>
-
-      <form id="testimonialForm">
-        <div class="row">
-          <input type="text" id="name" placeholder="Your name" required>
-          <input type="text" id="date" class="date" placeholder="Date (e.g. Oct 12, 2025)">
-        </div>
-        <textarea id="comment" placeholder="Your testimonial..." rows="2" required></textarea>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-
-    <!-- RIGHT BOTTOM: (D) another video -->
-    <div class="card rightBottom">
-      <video controls muted playsinline preload="metadata" poster="images/invoice.jpg">
-        <source src="video/invoice.mp4" type="video/mp4">
-      </video>
-    </div>
+      <textarea id="comment" placeholder="Your testimonial..." rows="2" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
   </div>
 
-  <!-- F: enlarged CTA -->
-  <div class="cta">
-    Ready to transform your data into results?<br>
-    Email: <a href="mailto:boenchit06@gmail.com">boenchit06@gmail.com</a> • Telegram: <a href="https://t.me/+6281381334828">@+6281381334828</a>
+  <!-- D (Video kanan tengah) -->
+  <div class="card video-box">
+    <video controls muted playsinline preload="metadata" poster="images/operationalcost.jpg">
+      <source src="video/pettycash.mp4" type="video/mp4">
+    </video>
   </div>
 
-  <!-- image modal -->
-  <div class="img-modal" id="imgModal" onclick="closeImage()">
-    <img id="imgModalImg" src="" alt="Preview">
+  <!-- E (Image bawah kiri) -->
+  <div class="card image-box">
+    <img src="images/invoice.jpg" alt="Invoice" onclick="openImage(this.src)">
   </div>
+
+  <!-- F (Video bawah kanan) -->
+  <div class="card video-box">
+    <video controls muted playsinline preload="metadata" poster="images/invoice.jpg">
+      <source src="video/invoice.mp4" type="video/mp4">
+    </video>
+  </div>
+
+</div>
+
+<!-- F -->
+<div class="cta">
+  Ready to transform your data into results?<br>
+  Email: <a href="mailto:boenchit06@gmail.com">boenchit06@gmail.com</a><br>
+  Telegram: <a href="https://t.me/+6281381334828">@+6281381334828</a>
+</div>
+
+<!-- Modal for image preview -->
+<div class="img-modal" id="imgModal" onclick="closeImage()">
+  <img id="imgModalImg" src="">
+</div>
 
 <script>
-/* ensure only one video plays at a time */
-const vids = Array.from(document.querySelectorAll('video'));
-vids.forEach(v=>{
-  v.addEventListener('play', ()=>vids.forEach(x=>{ if(x!==v) x.pause(); }));
-  v.muted = true; // start muted (user can unmute)
+const videos = document.querySelectorAll('video');
+videos.forEach(v=>{
+  v.addEventListener('play',()=>videos.forEach(x=>{if(x!==v)x.pause()}));
+  v.muted=true;
 });
 
-/* image modal open/close */
+// Modal image view
 function openImage(src){
-  const modal = document.getElementById('imgModal');
-  const img = document.getElementById('imgModalImg');
-  img.src = src;
-  modal.style.display = 'flex';
-  document.body.style.overflow = 'hidden';
+  const modal=document.getElementById('imgModal');
+  document.getElementById('imgModalImg').src=src;
+  modal.style.display='flex';
 }
 function closeImage(){
-  const modal = document.getElementById('imgModal');
-  modal.style.display = 'none';
-  document.getElementById('imgModalImg').src = '';
-  document.body.style.overflow = '';
+  document.getElementById('imgModal').style.display='none';
 }
-document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeImage(); });
 
-/* testimonial submit (with manual date) */
-document.getElementById('testimonialForm').addEventListener('submit', e=>{
+// Testimonials (manual date)
+document.getElementById('testimonialForm').addEventListener('submit',e=>{
   e.preventDefault();
-  const name = document.getElementById('name').value.trim();
-  const comment = document.getElementById('comment').value.trim();
-  const date = document.getElementById('date').value.trim(); // manual
-  if(!name || !comment) return;
-  const block = document.createElement('blockquote');
-  const footerText = date ? `— ${name} (${date})` : `— ${name}`;
-  block.innerHTML = `“${escapeHtml(comment)}”<footer>${footerText}</footer>`;
-  const list = document.getElementById('testimonialList');
-  list.prepend(block);
+  const name=document.getElementById('name').value.trim();
+  const comment=document.getElementById('comment').value.trim();
+  const date=document.getElementById('date').value.trim();
+  if(!name||!comment)return;
+  const newBlock=document.createElement('blockquote');
+  newBlock.innerHTML=`“${comment}”<footer>— ${name}${date?` (${date})`:''}</footer>`;
+  document.getElementById('testimonialList').prepend(newBlock);
   e.target.reset();
 });
-
-/* small helper to avoid XSS (basic) */
-function escapeHtml(str){
-  return str.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));
-}
 </script>
+
 </body>
 </html>
