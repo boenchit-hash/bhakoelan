@@ -31,13 +31,13 @@
     /* === Logo === */
     .logo {
       position: absolute;
-      top: 25px; /* Increased from 15px to move logo down */
-      right: 25px;
+      top: 20px; /* Adjusted position */
+      right: 30px; /* Adjusted position */
       background: rgba(255,255,255,0.9);
       border-radius: 12px;
-      padding: 8px 16px;
+      padding: 10px 20px; /* Slightly larger padding */
       font-weight: 600;
-      font-size: 1.2rem;
+      font-size: 1.3rem; /* Slightly larger font */
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       text-align: right;
       z-index: 10;
@@ -77,10 +77,9 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
-      transition: transform 0.3s ease; /* Added for hover effect */
+      transition: transform 0.3s ease;
     }
     
-    /* Video hover effect to make it larger */
     .video-row video:hover {
       transform: scale(1.05);
       z-index: 5;
@@ -91,13 +90,15 @@
       grid-column: 2;
       grid-row: 1;
       display: flex;
-      justify-content: space-around;
-      align-items: flex-start;
-      gap: 10px;
-      margin-top: 30px; /* Added to move images down */
+      flex-direction: column; /* Changed to column layout */
+      justify-content: flex-start;
+      align-items: center;
+      gap: 15px; /* Increased gap */
+      margin-top: 50px; /* More space from top */
+      height: 100%;
     }
     .right-top img {
-      width: 48%;
+      width: 90%; /* Larger width for column layout */
       border-radius: 10px;
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       cursor: pointer;
@@ -144,40 +145,42 @@
       align-items: center;
       background: rgba(255,255,255,0.9);
       border-radius: 10px;
-      padding: 10px;
+      padding: 15px; /* Increased padding */
       box-shadow: 0 2px 10px rgba(0,0,0,0.3);
       height: 100%;
-      margin-top: -10px; /* Adjusted to move testimonial up */
+      margin-top: 10px; /* Adjusted margin */
     }
 
     .testimonials {
       width: 100%;
       flex: 1;
       overflow-y: auto;
-      margin-bottom: 8px;
+      margin-bottom: 10px; /* Increased margin */
     }
     .testimonial-item {
       font-style: italic;
-      margin-bottom: 6px;
+      margin-bottom: 8px; /* Increased margin */
+      padding: 5px;
+      border-left: 3px solid #1f5eff; /* Added accent border */
     }
     .testimonial-author {
       text-align: right;
       font-size: 0.8rem;
       color: #555;
-      margin-bottom: 4px;
+      margin-bottom: 6px; /* Increased margin */
     }
 
     form {
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 6px;
+      gap: 8px; /* Increased gap */
     }
     input, textarea {
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 6px;
-      padding: 6px;
+      padding: 8px; /* Increased padding */
       font-size: 0.9rem;
       box-sizing: border-box;
     }
@@ -186,7 +189,7 @@
       color: #fff;
       border: none;
       border-radius: 6px;
-      padding: 8px;
+      padding: 10px; /* Increased padding */
       cursor: pointer;
       font-weight: 600;
     }
@@ -194,15 +197,14 @@
     footer {
       font-size: 0.8rem;
       text-align: center;
-      margin-top: 4px;
+      margin-top: 8px; /* Increased margin */
     }
     
-    /* Contact info side by side */
     .contact-info {
       display: flex;
       justify-content: center;
       gap: 15px;
-      margin-top: 5px;
+      margin-top: 8px; /* Increased margin */
       flex-wrap: wrap;
     }
     
@@ -224,9 +226,9 @@
         overflow-y: auto;
       }
       .logo {
-        right: 10px;
+        right: 15px;
         top: 15px;
-        font-size: 1rem;
+        font-size: 1.1rem;
       }
       .video-main video, .video-row video, .right-top img {
         width: 90%;
@@ -265,7 +267,7 @@
       </video>
     </div>
 
-    <!-- Dua gambar kanan atas -->
+    <!-- Dua gambar kanan atas - sekarang dalam layout vertikal -->
     <div class="right-top">
       <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
       <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
