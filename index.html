@@ -1,308 +1,239 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>boenchit — Data Entry Portfolio</title>
-<style>
-  :root {
-    --blue: #2563eb;
-  }
-
-  body {
-    margin: 0;
-    font-family: "Segoe UI", sans-serif;
-    background: url("images/background.jpg") no-repeat center center fixed;
-    background-size: cover;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    color: #000;
-  }
-
-  /* ==== HEADER ==== */
-  header {
-    position: absolute;
-    top: 2%;
-    left: 3%;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 12px 22px;
-    border-radius: 14px;
-    font-weight: bold;
-    font-size: clamp(22px, 2.5vw, 32px);
-    color: #000;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  }
-  header:hover {
-    transform: scale(1.02);
-    box-shadow: 0 4px 10px rgba(37, 99, 235, 0.4);
-  }
-  header span {
-    display: block;
-    font-size: clamp(10px, 1vw, 14px);
-    color: #333;
-    margin-top: 2px;
-    font-weight: normal;
-  }
-
-  /* ==== MAIN GRID ==== */
-  main {
-    display: grid;
-    grid-template-columns: 65% 32%;
-    gap: 1.5%;
-    width: 95%;
-    height: 85vh;
-    margin-top: 7%;
-  }
-
-  /* ==== LEFT SIDE ==== */
-  .left {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .video-large {
-    flex: 1.5;
-  }
-
-  video {
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    background: #000;
-    object-fit: contain;
-    transition: all 0.3s ease;
-  }
-
-  video:hover {
-    transform: scale(1.02);
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
-  }
-
-  .video-small-container {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-    height: 32%;
-  }
-
-  .video-small {
-    width: 49%;
-    border-radius: 10px;
-    background-color: #000;
-    object-fit: contain;
-  }
-
-  /* ==== RIGHT SIDE ==== */
-  .right {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .images {
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-  }
-
-  .images img {
-    width: 49%;
-    border-radius: 10px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-  }
-
-  .images img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 20px rgba(37, 99, 235, 0.4);
-  }
-
-  /* ==== TESTIMONIAL ==== */
-  .testimonial {
-    background: rgba(255, 255, 255, 0.93);
-    border-radius: 10px;
-    padding: 15px;
-    flex: 1;
-    overflow-y: auto;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease;
-  }
-
-  .testimonial:hover {
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.3);
-  }
-
-  .testimonial h3 {
-    margin-top: 0;
-  }
-
-  .testimonial p {
-    font-style: italic;
-    margin: 6px 0;
-  }
-
-  .testimonial small {
-    display: block;
-    text-align: right;
-    color: #444;
-  }
-
-  form {
-    margin-top: 10px;
-  }
-
-  input,
-  textarea {
-    width: 100%;
-    margin-top: 6px;
-    padding: 7px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 14px;
-    transition: box-shadow 0.3s ease;
-  }
-
-  input:focus,
-  textarea:focus {
-    outline: none;
-    box-shadow: 0 0 8px rgba(37, 99, 235, 0.4);
-  }
-
-  button {
-    width: 100%;
-    padding: 8px;
-    margin-top: 6px;
-    background: var(--blue);
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: all 0.3s ease;
-  }
-
-  button:hover {
-    background: #1d4ed8;
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
-  }
-
-  /* ==== FOOTER ==== */
-  footer {
-    position: absolute;
-    bottom: 2%;
-    right: 3%;
-    background: rgba(255, 255, 255, 0.85);
-    border-radius: 10px;
-    padding: 10px 18px;
-    font-size: clamp(12px, 1vw, 15px);
-    text-align: right;
-    line-height: 1.4;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
-    transition: all 0.3s ease;
-  }
-
-  footer:hover {
-    box-shadow: 0 0 15px rgba(37, 99, 235, 0.5);
-    transform: scale(1.02);
-  }
-
-  /* ==== RESPONSIVE MODE ==== */
-  @media (max-width: 1024px) {
-    main {
-      grid-template-columns: 1fr;
-      grid-template-rows: auto auto;
-      gap: 20px;
-      height: auto;
-      margin-top: 100px;
-      overflow-y: auto;
-      padding-bottom: 50px;
-    }
-    footer {
-      position: static;
-      text-align: center;
-      margin-top: 20px;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>boenchit | Data Entry Portfolio</title>
+  <style>
     body {
-      overflow: auto;
+      margin: 0;
+      padding: 0;
+      background: url('images/background.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: "Segoe UI", sans-serif;
+      color: #222;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
     }
-  }
-</style>
+
+    .container {
+      display: grid;
+      grid-template-columns: 65% 35%;
+      grid-template-rows: 70% 30%;
+      gap: 10px;
+      width: 95%;
+      height: 95%;
+    }
+
+    /* === Logo === */
+    .logo {
+      position: absolute;
+      top: 15px;
+      right: 25px;
+      background: rgba(255,255,255,0.9);
+      border-radius: 12px;
+      padding: 8px 16px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      text-align: right;
+    }
+    .logo span {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: normal;
+      color: #555;
+    }
+
+    /* === Left Section: Videos === */
+    .video-main {
+      grid-column: 1;
+      grid-row: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .video-main video {
+      width: 95%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .video-row {
+      grid-column: 1;
+      grid-row: 2;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      gap: 10px;
+    }
+    .video-row video {
+      width: 48%;
+      height: auto;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    /* === Right Section: Images + Testimonials === */
+    .right-top {
+      grid-column: 2;
+      grid-row: 1;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 10px;
+    }
+    .right-top img {
+      width: 48%;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    }
+
+    .right-bottom {
+      grid-column: 2;
+      grid-row: 2;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      background: rgba(255,255,255,0.9);
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      height: 100%;
+    }
+
+    .testimonials {
+      width: 100%;
+      flex: 1;
+      overflow-y: auto;
+      margin-bottom: 8px;
+    }
+    .testimonial-item {
+      font-style: italic;
+      margin-bottom: 6px;
+    }
+    .testimonial-author {
+      text-align: right;
+      font-size: 0.8rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    input, textarea {
+      width: 100%;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      padding: 6px;
+      font-size: 0.9rem;
+    }
+    button {
+      background-color: #1f5eff;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      padding: 8px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    footer {
+      font-size: 0.8rem;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    /* === Responsive === */
+    @media (max-width: 900px) {
+      .container {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        height: auto;
+        overflow-y: auto;
+      }
+      .logo {
+        right: 10px;
+        top: 10px;
+        font-size: 1rem;
+      }
+      .video-main video, .video-row video, .right-top img {
+        width: 90%;
+      }
+    }
+  </style>
 </head>
-
 <body>
-<header>
-  boenchit
-  <span>We enter data, you unlock result</span>
-</header>
-
-<main>
-  <!-- LEFT SIDE -->
-  <div class="left">
-    <div class="video-large">
-      <video src="video/videodataentry.mp4" controls muted></video>
-    </div>
-
-    <div class="video-small-container">
-      <video class="video-small" src="video/invoice.mp4" controls muted></video>
-      <video class="video-small" src="video/pettycash.mp4" controls muted></video>
-    </div>
+  <div class="logo">
+    boenchit
+    <span>We enter data, you unlock result</span>
   </div>
 
-  <!-- RIGHT SIDE -->
-  <div class="right">
-    <div class="images">
-      <img src="images/invoice.jpg" alt="Invoice" onclick="showImage(this.src)">
-      <img src="images/operationalcost.jpg" alt="Operational Cost" onclick="showImage(this.src)">
+  <div class="container">
+    <!-- Video utama -->
+    <div class="video-main">
+      <video autoplay muted loop playsinline>
+        <source src="video/videodataentry.mp4" type="video/mp4">
+      </video>
     </div>
 
-    <div class="testimonial">
-      <h3>Testimonials</h3>
-      <div id="testi-list">
-        <p>"Excellent attention to detail. Always delivers accurate results."<br><small>— Rina (Oct 12, 2025)</small></p>
-        <p>"Very professional and fast."<br><small>— Andi (Oct 10, 2025)</small></p>
+    <!-- Dua video bawah -->
+    <div class="video-row">
+      <video autoplay muted loop playsinline>
+        <source src="video/invoice.mp4" type="video/mp4">
+      </video>
+      <video autoplay muted loop playsinline>
+        <source src="video/pettycash.mp4" type="video/mp4">
+      </video>
+    </div>
+
+    <!-- Dua gambar kanan atas -->
+    <div class="right-top">
+      <img src="images/invoice.jpg" alt="invoice" />
+      <img src="images/operationalcost.jpg" alt="operationalcost" />
+    </div>
+
+    <!-- Testimoni + form -->
+    <div class="right-bottom">
+      <div class="testimonials">
+        <div class="testimonial-item">“Excellent attention to detail. Always delivers accurate results.”</div>
+        <div class="testimonial-author">— Rina (Oct 12, 2025)</div>
+
+        <div class="testimonial-item">“Very professional and fast.”</div>
+        <div class="testimonial-author">— Andi (Oct 10, 2025)</div>
+
+        <div class="testimonial-item">“Good job, perfect time.”</div>
+        <div class="testimonial-author">— Arif Wibowo (Oct 1, 2025)</div>
+
+        <div class="testimonial-item">“Nice work.”</div>
+        <div class="testimonial-author">— Agus Sutardi (Jun 15, 2025)</div>
+
+        <div class="testimonial-item">“Well done.”</div>
+        <div class="testimonial-author">— Anisah (Dec 16, 2025)</div>
       </div>
 
-      <form id="testi-form">
-        <input type="text" id="name" placeholder="Your name" required>
-        <input type="text" id="date" placeholder="Date (e.g. Oct 12, 2025)">
-        <textarea id="message" rows="2" placeholder="Your testimonial..." required></textarea>
+      <form>
+        <input type="text" placeholder="Your name" required />
+        <input type="text" placeholder="Date (e.g. Oct 12, 2025)" required />
+        <textarea placeholder="Your testimonial..." required></textarea>
         <button type="submit">Submit</button>
       </form>
+
+      <footer>
+        Ready to transform your data into results?<br>
+        Email: <a href="mailto:boenchit06@gmail.com">boenchit06@gmail.com</a><br>
+        Telegram: <a href="https://t.me/+6281381334828">@+6281381334828</a>
+      </footer>
     </div>
   </div>
-</main>
-
-<footer>
-  Ready to transform your data into results?<br>
-  Email: <a href="mailto:boenchit06@gmail.com">boenchit06@gmail.com</a><br>
-  Telegram: <a href="https://t.me/+6281381334828">@+6281381334828</a>
-</footer>
-
-<script>
-  const form = document.getElementById("testi-form");
-  const list = document.getElementById("testi-list");
-
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const date = document.getElementById("date").value || new Date().toDateString();
-    const message = document.getElementById("message").value;
-    const newTesti = document.createElement("p");
-    newTesti.innerHTML = `"${message}"<br><small>— ${name} (${date})</small>`;
-    list.appendChild(newTesti);
-    form.reset();
-  });
-
-  function showImage(src) {
-    const win = window.open("");
-    win.document.write(`<img src="${src}" style="width:100%;height:auto;">`);
-  }
-</script>
 </body>
 </html>
