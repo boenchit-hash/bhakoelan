@@ -28,47 +28,51 @@
       height: 95%;
     }
 
-    /* === REVISI 3: Logo dengan animasi === */
+    /* === REVISI 1: Animasi logo yang berbeda === */
     .logo {
       position: absolute;
       top: 20px;
       left: 30px;
-      background: linear-gradient(135deg, #ffeb3b, #ffc107); /* Gradien kuning */
-      border-radius: 8px;
+      background: linear-gradient(135deg, #667eea, #764ba2); /* Gradien ungu */
+      border-radius: 12px;
       padding: 12px 20px;
       font-weight: 700;
       font-size: 1.6rem;
-      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
       text-align: left;
       z-index: 10;
-      animation: logoPulse 2s infinite alternate, logoFloat 3s ease-in-out infinite;
-      border: 2px solid #ff9800;
+      animation: logoGlow 2s ease-in-out infinite alternate, logoSlide 4s ease-in-out infinite;
+      border: 2px solid #5a67d8;
+      color: white;
+      overflow: hidden;
     }
     .logo span {
       display: block;
       font-size: 0.9rem;
       font-weight: 600;
-      color: #333;
+      color: #e2e8f0;
       margin-top: 3px;
     }
 
-    @keyframes logoPulse {
+    /* Animasi glow */
+    @keyframes logoGlow {
       0% {
+        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
         transform: scale(1);
-        box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
       }
       100% {
-        transform: scale(1.05);
-        box-shadow: 0 6px 20px rgba(255, 193, 7, 0.5);
+        box-shadow: 0 6px 30px rgba(102, 126, 234, 0.7);
+        transform: scale(1.03);
       }
     }
 
-    @keyframes logoFloat {
+    /* Animasi slide dengan background bergerak */
+    @keyframes logoSlide {
       0%, 100% {
-        transform: translateY(0);
+        background-position: 0% 50%;
       }
       50% {
-        transform: translateY(-5px);
+        background-position: 100% 50%;
       }
     }
 
@@ -154,40 +158,54 @@
       cursor: pointer;
     }
 
-    /* === REVISI 1 & 2: Testimonial lebih naik dan lebih besar === */
+    /* === REVISI 2: Testimonial lebih besar dan kosong === */
     .right-bottom {
       grid-column: 2;
       grid-row: 2;
       display: flex;
       flex-direction: column;
-      justify-content: flex-start; /* Diubah dari space-between */
+      justify-content: flex-start;
       background: rgba(255,255,255,0.95);
       border-radius: 8px;
-      padding: 15px; /* Padding diperbesar */
+      padding: 15px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       height: 100%;
-      margin-top: -25px; /* DINAIKKAN LAGI dari -15px ke -25px */
-      min-height: 280px; /* Tinggi minimum diperbesar */
+      margin-top: -35px; /* LEBIH DINAIKKAN LAGI dari -25px ke -35px */
+      min-height: 320px; /* LEBIH TINGGI dari 280px ke 320px */
     }
 
     .testimonials {
       width: 100%;
       flex: 1;
       overflow-y: auto;
-      margin-bottom: 12px; /* Margin diperbesar */
-      font-size: 0.85rem; /* Font sedikit lebih besar */
+      margin-bottom: 15px; /* Margin diperbesar */
+      font-size: 0.85rem;
+      min-height: 120px; /* Area testimonial lebih besar */
+      background: rgba(248, 250, 252, 0.8); /* Background subtle */
+      border-radius: 6px;
+      padding: 10px;
+      border: 1px dashed #cbd5e0; /* Border putus-putus */
     }
+
+    /* REVISI: Testimonial dikosongkan */
+    .testimonials .empty-state {
+      text-align: center;
+      color: #718096;
+      font-style: italic;
+      padding: 20px 0;
+    }
+
     .testimonial-item {
-      margin-bottom: 8px; /* Margin diperbesar */
-      padding: 6px; /* Padding diperbesar */
+      margin-bottom: 8px;
+      padding: 6px;
       font-style: italic;
       line-height: 1.4;
     }
     .testimonial-author {
       text-align: right;
-      font-size: 0.8rem; /* Font sedikit lebih besar */
+      font-size: 0.8rem;
       color: #555;
-      margin-bottom: 6px; /* Margin diperbesar */
+      margin-bottom: 6px;
       font-weight: 500;
     }
 
@@ -196,19 +214,19 @@
       width: 100%;
       display: flex;
       flex-direction: column;
-      gap: 8px; /* Gap diperbesar */
-      margin-bottom: 10px; /* Margin diperbesar */
+      gap: 8px;
+      margin-bottom: 10px;
     }
     .simple-form input, .simple-form textarea {
       width: 100%;
       border: 1px solid #ccc;
       border-radius: 4px;
-      padding: 8px; /* Padding diperbesar */
-      font-size: 0.85rem; /* Font sedikit lebih besar */
+      padding: 8px;
+      font-size: 0.85rem;
       box-sizing: border-box;
     }
     .simple-form textarea {
-      height: 50px; /* Tinggi diperbesar */
+      height: 50px;
       resize: vertical;
     }
     .submit-btn {
@@ -216,10 +234,10 @@
       color: #fff;
       border: none;
       border-radius: 4px;
-      padding: 10px; /* Padding diperbesar */
+      padding: 10px;
       cursor: pointer;
       font-weight: 600;
-      font-size: 0.9rem; /* Font sedikit lebih besar */
+      font-size: 0.9rem;
       width: 100%;
       transition: background-color 0.3s ease;
     }
@@ -228,11 +246,11 @@
     }
 
     .simple-footer {
-      font-size: 0.8rem; /* Font sedikit lebih besar */
+      font-size: 0.8rem;
       text-align: center;
       color: #555;
       line-height: 1.4;
-      margin-top: auto; /* Push ke bawah */
+      margin-top: auto;
     }
     
     .email-link {
@@ -253,7 +271,7 @@
         left: 15px;
         top: 15px;
         font-size: 1.4rem;
-        animation: none; /* Nonaktifkan animasi di mobile */
+        animation: none;
       }
       .right-top {
         flex-direction: column;
@@ -308,14 +326,14 @@
       <img class="modal-content" id="modalImage">
     </div>
 
-    <!-- REVISI: Testimonial lebih naik dan lebih besar -->
+    <!-- REVISI: Testimonial lebih besar dan KOSONG -->
     <div class="right-bottom">
       <div class="testimonials">
-        <div class="testimonial-item">"Excellent attention to detail. Always delivers accurate results."</div>
-        <div class="testimonial-author">— Rina (Oct 12, 2025)</div>
-
-        <div class="testimonial-item">"Very professional and fast."</div>
-        <div class="testimonial-author">— Andi (Oct 10, 2025)</div>
+        <!-- REVISI: Testimonial dikosongkan -->
+        <div class="empty-state">
+          No testimonials yet<br>
+          <small>Be the first to share your experience!</small>
+        </div>
       </div>
 
       <div class="simple-form">
