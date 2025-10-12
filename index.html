@@ -28,25 +28,26 @@
       height: 95%;
     }
 
-    /* === Logo === */
+    /* === REVISI 1: Logo lebih besar === */
     .logo {
       position: absolute;
       top: 20px;
       left: 30px;
       background: rgba(255,255,255,0.95);
       border-radius: 8px;
-      padding: 8px 15px;
-      font-weight: 600;
-      font-size: 1.2rem;
+      padding: 10px 18px;
+      font-weight: 700;
+      font-size: 1.6rem; /* Diperbesar dari 1.2rem */
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       text-align: left;
       z-index: 10;
     }
     .logo span {
       display: block;
-      font-size: 0.8rem;
+      font-size: 0.9rem; /* Diperbesar dari 0.8rem */
       font-weight: normal;
       color: #555;
+      margin-top: 3px;
     }
 
     /* === Left Section: Videos === */
@@ -79,27 +80,59 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.3);
     }
 
-    /* === REVISI: Right Section Images - SEJAJAR HORIZONTAL === */
+    /* === Right Section: Images === */
     .right-top {
       grid-column: 2;
       grid-row: 1;
       display: flex;
-      flex-direction: row; /* Diubah dari column ke row */
-      justify-content: space-between; /* Gambar sejajar horizontal */
-      align-items: flex-start; /* Rata atas */
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: flex-start;
       gap: 8px;
-      margin-top: 10px; /* Dikurangi dari 50px ke 10px */
+      margin-top: 10px;
       height: 100%;
       padding: 0 5px;
     }
     .right-top img {
-      width: 48%; /* Lebar 48% untuk dua gambar sejajar */
+      width: 48%;
       border-radius: 6px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.25);
       cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    .right-top img:hover {
+      transform: scale(1.02);
     }
 
-    /* === Testimonial Section === */
+    /* === REVISI 2: Modal untuk gambar yang bisa diklik === */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.95);
+      justify-content: center;
+      align-items: center;
+    }
+    .modal-content {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 10px;
+    }
+    .close {
+      position: absolute;
+      top: 25px;
+      right: 40px;
+      color: #fff;
+      font-size: 45px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+    /* === REVISI 3: Testimonial dinaikkan === */
     .right-bottom {
       grid-column: 2;
       grid-row: 2;
@@ -111,7 +144,7 @@
       padding: 12px;
       box-shadow: 0 2px 6px rgba(0,0,0,0.2);
       height: 100%;
-      margin-top: 5px;
+      margin-top: -15px; /* DINAIKKAN dari 5px ke -15px */
     }
 
     .testimonials {
@@ -187,13 +220,17 @@
       .logo {
         left: 15px;
         top: 15px;
+        font-size: 1.4rem; /* Diperbesar juga di mobile */
       }
       .right-top {
-        flex-direction: column; /* Di mobile jadi vertikal */
+        flex-direction: column;
         margin-top: 20px;
       }
       .right-top img {
         width: 90%;
+      }
+      .right-bottom {
+        margin-top: 0; /* Reset di mobile */
       }
     }
   </style>
@@ -225,13 +262,19 @@
       </video>
     </div>
 
-    <!-- REVISI: Dua gambar kanan atas SEJAJAR HORIZONTAL -->
+    <!-- Dua gambar kanan atas - BISA DIKLIK -->
     <div class="right-top">
-      <img src="images/invoice.jpg" alt="invoice" />
-      <img src="images/operationalcost.jpg" alt="operationalcost" />
+      <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
+      <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
     </div>
 
-    <!-- Testimoni + form -->
+    <!-- Modal untuk gambar yang diperbesar -->
+    <div id="imageModal" class="modal">
+      <span class="close" onclick="closeModal()">&times;</span>
+      <img class="modal-content" id="modalImage">
+    </div>
+
+    <!-- Testimoni + form - POSISI DINAIKKAN -->
     <div class="right-bottom">
       <div class="testimonials">
         <div class="testimonial-item">"Excellent attention to detail. Always delivers accurate results."</div>
@@ -254,5 +297,27 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // REVISI 2: Fungsi untuk modal gambar
+    function openModal(img) {
+      const modal = document.getElementById("imageModal");
+      const modalImg = document.getElementById("modalImage");
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+    }
+
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+    }
+
+    // Tutup modal ketika klik di luar gambar
+    window.onclick = function(event) {
+      const modal = document.getElementById("imageModal");
+      if (event.target === modal) {
+        closeModal();
+      }
+    }
+  </script>
 </body>
 </html>
