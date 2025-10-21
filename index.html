@@ -19,39 +19,43 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            padding: 15px;
         }
         
         .container {
-            height: 100vh;
+            height: 100%;
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
-            gap: 10px;
-            padding: 10px;
+            gap: 15px;
         }
         
         .section {
-            background: rgba(255, 255, 255, 0.9);
-            border-radius: 10px;
-            padding: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 20px;
             display: flex;
             flex-direction: column;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+            border: 3px solid #3498db;
         }
         
         .section-title {
-            font-size: 1.2rem;
+            font-size: 1.4rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
             color: #2c3e50;
             text-align: center;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #bdc3c7;
         }
         
         .video-container {
             flex: 1;
-            border-radius: 8px;
+            border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 10px;
+            margin-bottom: 15px;
+            background: #000;
         }
         
         .video-container video {
@@ -63,21 +67,66 @@
         .preview-container {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            height: 120px;
+            gap: 15px;
+            height: 100px;
         }
         
         .preview-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            border-radius: 6px;
+            border-radius: 8px;
             cursor: pointer;
-            border: 2px solid #bdc3c7;
+            border: 3px solid #bdc3c7;
+            transition: all 0.3s ease;
         }
         
         .preview-image:hover {
             border-color: #3498db;
+            transform: scale(1.05);
+        }
+        
+        .preview-section {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .preview-row {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        
+        .preview-label {
+            font-size: 1.1rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .preview-letters {
+            display: flex;
+            gap: 40px;
+        }
+        
+        .letter-item {
+            text-align: center;
+        }
+        
+        .letter {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #e74c3c;
+            margin-bottom: 5px;
+        }
+        
+        .letter-label {
+            font-size: 0.9rem;
+            color: #7f8c8d;
         }
         
         /* Modal */
@@ -88,7 +137,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -97,7 +146,8 @@
         .modal-content {
             max-width: 90%;
             max-height: 90%;
-            border-radius: 8px;
+            border-radius: 10px;
+            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
         }
         
         .close-modal {
@@ -105,16 +155,21 @@
             top: 20px;
             right: 30px;
             color: white;
-            font-size: 40px;
+            font-size: 50px;
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #e74c3c;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Introduction -->
+        <!-- Introduction - Kiri Atas -->
         <div class="section" style="grid-column: 1; grid-row: 1;">
             <div class="section-title">Introduction</div>
             <div class="video-container">
@@ -124,7 +179,7 @@
             </div>
         </div>
         
-        <!-- Spreadsheet Management -->
+        <!-- Spreadsheet Management - Kanan Atas -->
         <div class="section" style="grid-column: 2; grid-row: 1;">
             <div class="section-title">Spreadsheet Management</div>
             <div class="video-container">
@@ -138,7 +193,7 @@
             </div>
         </div>
         
-        <!-- Manual Data Entry -->
+        <!-- Manual Data Entry - Kiri Bawah -->
         <div class="section" style="grid-column: 1; grid-row: 2;">
             <div class="section-title">Manual Data Entry</div>
             <div class="video-container">
@@ -152,33 +207,33 @@
             </div>
         </div>
         
-        <!-- Preview Section -->
+        <!-- Preview Section - Kanan Bawah -->
         <div class="section" style="grid-column: 2; grid-row: 2;">
             <div class="section-title">Preview</div>
-            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
-                <div style="text-align: center; margin-bottom: 20px;">
-                    <div style="font-weight: bold; margin-bottom: 10px;">Spreadsheet Management</div>
-                    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">A</div>
-                            <div>Before</div>
+            <div class="preview-section">
+                <div class="preview-row">
+                    <div class="preview-label">Spreadsheet Management</div>
+                    <div class="preview-letters">
+                        <div class="letter-item">
+                            <div class="letter">A</div>
+                            <div class="letter-label">Before</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">B</div>
-                            <div>After</div>
+                        <div class="letter-item">
+                            <div class="letter">B</div>
+                            <div class="letter-label">After</div>
                         </div>
                     </div>
                 </div>
-                <div style="text-align: center;">
-                    <div style="font-weight: bold; margin-bottom: 10px;">Manual Data Entry</div>
-                    <div style="display: flex; gap: 20px;">
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">C</div>
-                            <div>Before</div>
+                <div class="preview-row">
+                    <div class="preview-label">Manual Data Entry</div>
+                    <div class="preview-letters">
+                        <div class="letter-item">
+                            <div class="letter">C</div>
+                            <div class="letter-label">Before</div>
                         </div>
-                        <div style="text-align: center;">
-                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">D</div>
-                            <div>After</div>
+                        <div class="letter-item">
+                            <div class="letter">D</div>
+                            <div class="letter-label">After</div>
                         </div>
                     </div>
                 </div>
