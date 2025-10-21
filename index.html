@@ -1,362 +1,314 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>boenchit | Data Entry Portfolio</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background: url('images/background.jpg') no-repeat center center fixed;
-      background-size: cover;
-      font-family: "Segoe UI", sans-serif;
-      color: #222;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    .container {
-      display: grid;
-      grid-template-columns: 65% 35%;
-      grid-template-rows: 50% 50%; /* REVISI: Ubah jadi 50-50 */
-      gap: 20px; /* REVISI: Tambah gap */
-      width: 95%;
-      height: 95%;
-    }
-
-    /* === Logo === */
-    .logo {
-      position: absolute;
-      top: 20px;
-      left: 30px;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      border-radius: 12px;
-      padding: 12px 20px;
-      font-weight: 700;
-      font-size: 1.6rem;
-      box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-      text-align: left;
-      z-index: 10;
-      animation: logoGlow 2s ease-in-out infinite alternate, logoSlide 4s ease-in-out infinite;
-      border: 2px solid #5a67d8;
-      color: white;
-      overflow: hidden;
-    }
-    .logo span {
-      display: block;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: #e2e8f0;
-      margin-top: 3px;
-    }
-
-    @keyframes logoGlow {
-      0% {
-        box-shadow: 0 4px 20px rgba(102, 126, 234, 0.4);
-        transform: scale(1);
-      }
-      100% {
-        box-shadow: 0 6px 30px rgba(102, 126, 234, 0.7);
-        transform: scale(1.03);
-      }
-    }
-
-    @keyframes logoSlide {
-      0%, 100% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
-    }
-
-    /* === Video utama - lebih kecil === */
-    .video-main {
-      grid-column: 1;
-      grid-row: 1;
-      display: flex;
-      justify-content: center;
-      align-items: flex-end; /* Rata bawah */
-      padding-bottom: 10px;
-    }
-    .video-main video {
-      width: 96%;
-      height: 90%; /* REVISI: Kurangi tinggi */
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      object-fit: cover;
-    }
-
-    /* === Video bawah - lebih ke atas === */
-    .video-row {
-      grid-column: 1;
-      grid-row: 2;
-      display: flex;
-      justify-content: space-evenly;
-      align-items: flex-start; /* Rata atas */
-      gap: 10px;
-      padding-top: 10px;
-    }
-    .video-row video {
-      width: 48%;
-      height: 90%; /* REVISI: Kurangi tinggi */
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-      object-fit: cover;
-    }
-
-    /* === Right Section: Images === */
-    .right-top {
-      grid-column: 2;
-      grid-row: 1;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 8px;
-      margin-top: 30px;
-      height: 100%;
-      padding: 0 5px;
-    }
-    .right-top img {
-      width: 48%;
-      border-radius: 6px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.25);
-      cursor: pointer;
-      transition: transform 0.2s ease;
-    }
-    .right-top img:hover {
-      transform: scale(1.02);
-    }
-
-    /* Modal untuk gambar */
-    .modal {
-      display: none;
-      position: fixed;
-      z-index: 100;
-      left: 0;
-      top: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0,0,0,0.95);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      max-width: 85%;
-      max-height: 85%;
-      border-radius: 10px;
-    }
-    .close {
-      position: absolute;
-      top: 25px;
-      right: 40px;
-      color: #fff;
-      font-size: 45px;
-      font-weight: bold;
-      cursor: pointer;
-    }
-
-    /* === Testimonial tetap sama === */
-    .right-bottom {
-      grid-column: 2;
-      grid-row: 2;
-      display: flex;
-      flex-direction: column;
-      background: rgba(255,255,255,0.95);
-      border-radius: 8px;
-      padding: 8px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      height: 100%;
-    }
-
-    .testimonials {
-      width: 100%;
-      flex: 0.6;
-      overflow-y: auto;
-      margin-bottom: 8px;
-      font-size: 0.8rem;
-      min-height: 70px;
-      background: rgba(248, 250, 252, 0.8);
-      border-radius: 6px;
-      padding: 8px;
-      border: 1px dashed #cbd5e0;
-    }
-
-    .testimonials .empty-state {
-      text-align: center;
-      color: #718096;
-      font-style: italic;
-      padding: 10px 0;
-      font-size: 0.8rem;
-    }
-
-    /* Form yang lebih compact */
-    .simple-form {
-      width: 100%;
-      display: flex;
-      flex-direction: column;
-      gap: 5px;
-      margin-bottom: 6px;
-    }
-    .simple-form input, .simple-form textarea {
-      width: 100%;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      padding: 5px;
-      font-size: 0.8rem;
-      box-sizing: border-box;
-    }
-    .simple-form textarea {
-      height: 35px;
-      resize: vertical;
-    }
-    .submit-btn {
-      background-color: #1f5eff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      padding: 7px;
-      cursor: pointer;
-      font-weight: 600;
-      font-size: 0.85rem;
-      width: 100%;
-      transition: background-color 0.3s ease;
-    }
-    .submit-btn:hover {
-      background-color: #0d4ae3;
-    }
-
-    .simple-footer {
-      font-size: 0.75rem;
-      text-align: center;
-      color: #555;
-      line-height: 1.3;
-      margin-top: auto;
-    }
-    
-    .email-link {
-      color: #1f5eff;
-      text-decoration: none;
-      font-weight: 500;
-    }
-
-    /* === Responsive === */
-    @media (max-width: 900px) {
-      .container {
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto auto;
-        height: auto;
-        overflow-y: auto;
-        gap: 10px;
-      }
-      .logo {
-        left: 15px;
-        top: 15px;
-        font-size: 1.4rem;
-        animation: none;
-      }
-      .right-top {
-        flex-direction: column;
-        margin-top: 20px;
-      }
-      .right-top img {
-        width: 90%;
-      }
-      .video-main, .video-row {
-        align-items: center;
-        padding: 0;
-      }
-      .video-main video, .video-row video {
-        height: auto;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bhakoolan - Tutorial Management</title>
+    <style>
+        /* Reset dan dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 1cm; /* Margin 1 cm dari pinggir */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+        
+        /* Container utama */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Header */
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            padding-bottom: 20px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            margin: 30px 0 15px;
+            color: #3498db;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+            color: #2980b9;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        /* Section styling */
+        section {
+            margin-bottom: 40px;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.7);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+        
+        /* Video container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            margin: 20px 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        /* Preview container */
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .preview-item {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+        
+        .preview-item h4 {
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .preview-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .preview-image:hover {
+            transform: scale(1.03);
+        }
+        
+        /* Modal untuk gambar dan video */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .modal-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        /* Responsif */
+        @media (max-width: 768px) {
+            body {
+                margin: 0.5cm;
+            }
+            
+            .preview-container {
+                flex-direction: column;
+            }
+            
+            .video-container {
+                height: 200px;
+            }
+        }
+    </style>
 </head>
 <body>
-  <div class="logo">
-    boenchit
-    <span>We enter data, you unlock result</span>
-  </div>
-
-  <div class="container">
-    <!-- Video utama - LEBIH KECIL -->
-    <div class="video-main">
-      <video controls autoplay muted loop playsinline>
-        <source src="video/videodataentry.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <div class="container">
+        <header>
+            <h1>Bhakoolan Tutorial</h1>
+            <p>Panduan lengkap untuk menggunakan fitur-fitur Bhakoolan</p>
+        </header>
+        
+        <!-- Introduction Section -->
+        <section id="introduction">
+            <h2>Introduction</h2>
+            <p>Video perkenalan tentang Bhakoolan dan fitur-fitur utamanya.</p>
+            
+            <div class="video-container">
+                <video id="intro-video" autoplay muted loop>
+                    <source src="video/perkenalan.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung pemutaran video.
+                </video>
+            </div>
+        </section>
+        
+        <!-- Spreadsheet Management Section -->
+        <section id="spreadsheet-management">
+            <h2>Spreadsheet Management</h2>
+            <p>Pelajari cara mengelola spreadsheet dengan fitur-fitur canggih Bhakoolan.</p>
+            
+            <div class="video-container">
+                <video id="spreadsheet-video" controls>
+                    <source src="video/spreadsheetmanagement.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung pemutaran video.
+                </video>
+            </div>
+            
+            <h3>Preview Spreadsheet Management</h3>
+            <p>Perbandingan tampilan sebelum dan sesudah menggunakan fitur spreadsheet management.</p>
+            
+            <div class="preview-container">
+                <div class="preview-item">
+                    <h4>Sebelum</h4>
+                    <img src="images/before_spreadsheetmanagement.jpg" alt="Sebelum Spreadsheet Management" class="preview-image" data-src="images/before_spreadsheetmanagement.jpg">
+                </div>
+                <div class="preview-item">
+                    <h4>Sesudah</h4>
+                    <img src="images/after_spreadsheetmanagement.jpg" alt="Sesudah Spreadsheet Management" class="preview-image" data-src="images/after_spreadsheetmanagement.jpg">
+                </div>
+            </div>
+        </section>
+        
+        <!-- Manual Data Entry Section -->
+        <section id="manual-data-entry">
+            <h2>Manual Data Entry</h2>
+            <p>Pelajari cara memasukkan data secara manual dengan fitur-fitur Bhakoolan.</p>
+            
+            <div class="video-container">
+                <video id="manual-video" controls>
+                    <source src="video/manualdatacentry.mp4" type="video/mp4">
+                    Browser Anda tidak mendukung pemutaran video.
+                </video>
+            </div>
+            
+            <h3>Preview Manual Data Entry</h3>
+            <p>Perbandingan tampilan sebelum dan sesudah menggunakan fitur manual data entry.</p>
+            
+            <div class="preview-container">
+                <div class="preview-item">
+                    <h4>Sebelum</h4>
+                    <img src="images/before_manualdatacentry.jpg" alt="Sebelum Manual Data Entry" class="preview-image" data-src="images/before_manualdatacentry.jpg">
+                </div>
+                <div class="preview-item">
+                    <h4>Sesudah</h4>
+                    <img src="images/after_manualdatacentry.jpg" alt="Sesudah Manual Data Entry" class="preview-image" data-src="images/after_manualdatacentry.jpg">
+                </div>
+            </div>
+        </section>
     </div>
-
-    <!-- Video bawah - LEBIH RENDAH -->
-    <div class="video-row">
-      <video controls autoplay muted loop playsinline>
-        <source src="video/invoice.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-      <video controls autoplay muted loop playsinline>
-        <source src="video/pettycash.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    
+    <!-- Modal untuk gambar -->
+    <div id="image-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modal-image">
     </div>
-
-    <!-- Dua gambar kanan atas -->
-    <div class="right-top">
-      <img src="images/invoice.jpg" alt="invoice" onclick="openModal(this)" />
-      <img src="images/operationalcost.jpg" alt="operationalcost" onclick="openModal(this)" />
+    
+    <!-- Modal untuk video -->
+    <div id="video-modal" class="modal">
+        <span class="close-modal">&times;</span>
+        <video class="modal-content" id="modal-video" controls>
+            Browser Anda tidak mendukung pemutaran video.
+        </video>
     </div>
-
-    <!-- Modal untuk gambar yang diperbesar -->
-    <div id="imageModal" class="modal">
-      <span class="close" onclick="closeModal()">&times;</span>
-      <img class="modal-content" id="modalImage">
-    </div>
-
-    <!-- Testimoni + form - TETAP SAMA -->
-    <div class="right-bottom">
-      <div class="testimonials">
-        <div class="empty-state">
-          No testimonials yet<br>
-          <small>Be the first to share your experience!</small>
-        </div>
-      </div>
-
-      <div class="simple-form">
-        <input type="text" placeholder="Your name" />
-        <input type="text" placeholder="Date (e.g Oct 12 2025)" />
-        <textarea placeholder="Your testimonial..."></textarea>
-        <button class="submit-btn">Submit</button>
-      </div>
-
-      <div class="simple-footer">
-        Ready to transform your data into result<br>
-        Email : <a href="mailto:boenchit06@gmail.com" class="email-link">boenchit06@gmail.com</a>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    function openModal(img) {
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImage");
-      modal.style.display = "flex";
-      modalImg.src = img.src;
-    }
-
-    function closeModal() {
-      document.getElementById("imageModal").style.display = "none";
-    }
-
-    window.onclick = function(event) {
-      const modal = document.getElementById("imageModal");
-      if (event.target === modal) {
-        closeModal();
-      }
-    }
-  </script>
+    
+    <script>
+        // Set background image
+        document.body.style.backgroundImage = "url('images/background.jpg')";
+        
+        // Modal functionality for images
+        const imageModal = document.getElementById('image-modal');
+        const modalImage = document.getElementById('modal-image');
+        const closeModal = document.querySelectorAll('.close-modal');
+        
+        // Add click event to all preview images
+        document.querySelectorAll('.preview-image').forEach(img => {
+            img.addEventListener('click', function() {
+                modalImage.src = this.getAttribute('data-src');
+                imageModal.style.display = 'flex';
+            });
+        });
+        
+        // Modal functionality for videos
+        const videoModal = document.getElementById('video-modal');
+        const modalVideo = document.getElementById('modal-video');
+        
+        // Add click event to video containers (except intro video)
+        document.querySelectorAll('.video-container:not(:first-child)').forEach(container => {
+            container.addEventListener('click', function() {
+                const video = this.querySelector('video');
+                modalVideo.src = video.querySelector('source').src;
+                videoModal.style.display = 'flex';
+                modalVideo.play();
+            });
+        });
+        
+        // Close modals when clicking the X
+        closeModal.forEach(closeBtn => {
+            closeBtn.addEventListener('click', function() {
+                imageModal.style.display = 'none';
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+            });
+        });
+        
+        // Close modals when clicking outside the content
+        window.addEventListener('click', function(event) {
+            if (event.target === imageModal) {
+                imageModal.style.display = 'none';
+            }
+            if (event.target === videoModal) {
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+            }
+        });
+    </script>
 </body>
 </html>
