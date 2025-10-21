@@ -16,7 +16,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            margin: 1cm; /* Margin 1 cm dari pinggir */
+            margin: 1cm;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -28,59 +28,45 @@
             max-width: 1200px;
             margin: 0 auto;
             background-color: rgba(255, 255, 255, 0.9);
-            padding: 20px;
+            padding: 30px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
         }
         
-        /* Header */
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid #eaeaea;
-        }
-        
+        /* Header sections */
         h1 {
             font-size: 2.5rem;
-            margin-bottom: 10px;
+            margin-bottom: 30px;
             color: #2c3e50;
+            text-align: center;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #3498db;
         }
         
         h2 {
             font-size: 2rem;
-            margin: 30px 0 15px;
+            margin: 40px 0 20px;
             color: #3498db;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eaeaea;
         }
         
         h3 {
             font-size: 1.5rem;
-            margin: 20px 0 10px;
+            margin: 30px 0 15px;
             color: #2980b9;
-        }
-        
-        p {
-            margin-bottom: 15px;
-        }
-        
-        /* Section styling */
-        section {
-            margin-bottom: 40px;
-            padding: 20px;
-            border-radius: 8px;
-            background-color: rgba(255, 255, 255, 0.7);
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
         }
         
         /* Video container */
         .video-container {
             position: relative;
             width: 100%;
-            height: 300px;
-            margin: 20px 0;
+            height: 400px;
+            margin: 25px 0;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            border: 2px solid #3498db;
         }
         
         .video-container video {
@@ -89,40 +75,68 @@
             object-fit: cover;
         }
         
-        /* Preview container */
+        /* Preview sections */
+        .preview-section {
+            margin: 40px 0;
+            padding: 25px;
+            background-color: rgba(248, 249, 250, 0.8);
+            border-radius: 10px;
+            border-left: 5px solid #2ecc71;
+        }
+        
+        .preview-title {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        
         .preview-container {
             display: flex;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 30px;
             margin: 20px 0;
+            justify-content: center;
         }
         
         .preview-item {
             flex: 1;
             min-width: 300px;
             text-align: center;
+            padding: 15px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
         }
         
-        .preview-item h4 {
-            margin-bottom: 10px;
+        .preview-item:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-label {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
             color: #2c3e50;
         }
         
         .preview-image {
             width: 100%;
-            height: 200px;
+            height: 250px;
             object-fit: cover;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             transition: transform 0.3s ease;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border: 2px solid #bdc3c7;
         }
         
         .preview-image:hover {
-            transform: scale(1.03);
+            transform: scale(1.05);
+            border-color: #3498db;
         }
         
-        /* Modal untuk gambar dan video */
+        /* Modal */
         .modal {
             display: none;
             position: fixed;
@@ -130,7 +144,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
+            background-color: rgba(0, 0, 0, 0.9);
             z-index: 1000;
             justify-content: center;
             align-items: center;
@@ -140,7 +154,7 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
         
         .close-modal {
@@ -152,6 +166,11 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
+            transition: color 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #e74c3c;
         }
         
         /* Responsif */
@@ -165,35 +184,39 @@
             }
             
             .video-container {
-                height: 200px;
+                height: 250px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            h2 {
+                font-size: 1.7rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>Bhakoolan Tutorial</h1>
-            <p>Panduan lengkap untuk menggunakan fitur-fitur Bhakoolan</p>
-        </header>
-        
         <!-- Introduction Section -->
         <section id="introduction">
-            <h2>Introduction</h2>
-            <p>Video perkenalan tentang Bhakoolan dan fitur-fitur utamanya.</p>
-            
+            <h1>Introduction</h1>
+                      
             <div class="video-container">
                 <video id="intro-video" autoplay muted loop>
                     <source src="video/perkenalan.mp4" type="video/mp4">
                     Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
+            
+            <p><strong>Lokasi:</strong> video/perkenalan</p>
+            <p><em>Video pertama - Auto play tanpa kontrol, loop terus menerus</em></p>
         </section>
         
         <!-- Spreadsheet Management Section -->
         <section id="spreadsheet-management">
             <h2>Spreadsheet Management</h2>
-            <p>Pelajari cara mengelola spreadsheet dengan fitur-fitur canggih Bhakoolan.</p>
             
             <div class="video-container">
                 <video id="spreadsheet-video" controls>
@@ -202,17 +225,29 @@
                 </video>
             </div>
             
-            <h3>Preview Spreadsheet Management</h3>
-            <p>Perbandingan tampilan sebelum dan sesudah menggunakan fitur spreadsheet management.</p>
+            <p><strong>Lokasi:</strong> video/spreadsheetmanagement</p>
+            <p><em>Video kedua - Dapat diklik untuk membesar dengan kontrol player</em></p>
             
-            <div class="preview-container">
-                <div class="preview-item">
-                    <h4>Sebelum</h4>
-                    <img src="images/before_spreadsheetmanagement.jpg" alt="Sebelum Spreadsheet Management" class="preview-image" data-src="images/before_spreadsheetmanagement.jpg">
-                </div>
-                <div class="preview-item">
-                    <h4>Sesudah</h4>
-                    <img src="images/after_spreadsheetmanagement.jpg" alt="Sesudah Spreadsheet Management" class="preview-image" data-src="images/after_spreadsheetmanagement.jpg">
+            <div class="preview-section">
+                <div class="preview-title">Preview Spreadsheet Management</div>
+                <p>Ini untuk preview images A dan B</p>
+                <p><strong>Lokasi:</strong></p>
+                <ul>
+                    <li>Images/before_spreadsheetmanagement</li>
+                    <li>Images/after_spreadsheetmanagement</li>
+                </ul>
+                
+                <div class="preview-container">
+                    <div class="preview-item">
+                        <div class="image-label">A</div>
+                        <img src="images/before_spreadsheetmanagement.jpg" alt="Before Spreadsheet Management" class="preview-image" data-src="images/before_spreadsheetmanagement.jpg">
+                        <p>Before</p>
+                    </div>
+                    <div class="preview-item">
+                        <div class="image-label">B</div>
+                        <img src="images/after_spreadsheetmanagement.jpg" alt="After Spreadsheet Management" class="preview-image" data-src="images/after_spreadsheetmanagement.jpg">
+                        <p>After</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -220,26 +255,37 @@
         <!-- Manual Data Entry Section -->
         <section id="manual-data-entry">
             <h2>Manual Data Entry</h2>
-            <p>Pelajari cara memasukkan data secara manual dengan fitur-fitur Bhakoolan.</p>
             
             <div class="video-container">
                 <video id="manual-video" controls>
-                    <source src="video/manualdatacentry.mp4" type="video/mp4">
+                    <source src="video/manualdataentry.mp4" type="video/mp4">
                     Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
             
-            <h3>Preview Manual Data Entry</h3>
-            <p>Perbandingan tampilan sebelum dan sesudah menggunakan fitur manual data entry.</p>
+            <p><strong>Lokasi:</strong> video/manualdataentry</p>
+            <p><em>Video ketiga - Dapat diklik untuk membesar dengan kontrol player</em></p>
             
-            <div class="preview-container">
-                <div class="preview-item">
-                    <h4>Sebelum</h4>
-                    <img src="images/before_manualdatacentry.jpg" alt="Sebelum Manual Data Entry" class="preview-image" data-src="images/before_manualdatacentry.jpg">
-                </div>
-                <div class="preview-item">
-                    <h4>Sesudah</h4>
-                    <img src="images/after_manualdatacentry.jpg" alt="Sesudah Manual Data Entry" class="preview-image" data-src="images/after_manualdatacentry.jpg">
+            <div class="preview-section">
+                <div class="preview-title">Preview Manual Data Entry</div>
+                <p>Ini untuk preview images C dan D</p>
+                <p><strong>Lokasi:</strong></p>
+                <ul>
+                    <li>Images/before_manualdatentry</li>
+                    <li>Images/after_manualdataentry</li>
+                </ul>
+                
+                <div class="preview-container">
+                    <div class="preview-item">
+                        <div class="image-label">C</div>
+                        <img src="images/before_manualdataentry.jpg" alt="Before Manual Data Entry" class="preview-image" data-src="images/before_manualdataentry.jpg">
+                        <p>Before</p>
+                    </div>
+                    <div class="preview-item">
+                        <div class="image-label">D</div>
+                        <img src="images/after_manualdataentry.jpg" alt="After Manual Data Entry" class="preview-image" data-src="images/after_manualdataentry.jpg">
+                        <p>After</p>
+                    </div>
                 </div>
             </div>
         </section>
