@@ -12,14 +12,14 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: Arial, sans-serif;
             height: 100vh;
             overflow: hidden;
             background-image: url('images/background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 15px;
+            padding: 20px;
         }
         
         .container {
@@ -27,251 +27,207 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             grid-template-rows: 1fr 1fr;
-            gap: 15px;
+            gap: 20px;
         }
         
         .section {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-            border: 3px solid #3498db;
+            background: white;
+            border-radius: 10px;
+            padding: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border: 2px solid #ddd;
         }
         
         .section-title {
-            font-size: 1.4rem;
+            font-size: 18px;
             font-weight: bold;
-            margin-bottom: 15px;
-            color: #2c3e50;
+            margin-bottom: 10px;
+            color: #333;
             text-align: center;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #bdc3c7;
         }
         
         .video-container {
-            flex: 1;
-            border-radius: 10px;
-            overflow: hidden;
-            margin-bottom: 15px;
-            background: #000;
+            height: 120px;
+            background: #f0f0f0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid #ccc;
         }
         
-        .video-container video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        
-        .preview-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            height: 100px;
-        }
-        
-        .preview-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-            cursor: pointer;
-            border: 3px solid #bdc3c7;
-            transition: all 0.3s ease;
-        }
-        
-        .preview-image:hover {
-            border-color: #3498db;
-            transform: scale(1.05);
+        .video-placeholder {
+            color: #666;
+            font-size: 14px;
         }
         
         .preview-section {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
+            margin-top: 10px;
         }
         
-        .preview-row {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-        
-        .preview-label {
-            font-size: 1.1rem;
+        .preview-title {
+            font-size: 14px;
             font-weight: bold;
-            margin-bottom: 10px;
-            color: #2c3e50;
+            margin-bottom: 5px;
+            color: #333;
         }
         
-        .preview-letters {
+        .preview-images {
             display: flex;
-            gap: 40px;
+            gap: 10px;
+            margin-top: 5px;
         }
         
-        .letter-item {
-            text-align: center;
+        .preview-image {
+            flex: 1;
+            height: 60px;
+            background: #f8f8f8;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .image-label {
+            font-size: 12px;
+            color: #666;
+        }
+        
+        .letters-row {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 5px;
         }
         
         .letter {
-            font-size: 2rem;
             font-weight: bold;
-            color: #e74c3c;
-            margin-bottom: 5px;
+            font-size: 16px;
         }
         
-        .letter-label {
-            font-size: 0.9rem;
-            color: #7f8c8d;
+        /* Introduction Section */
+        #introduction {
+            grid-column: 1;
+            grid-row: 1;
         }
         
-        /* Modal */
-        .modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.95);
-            z-index: 1000;
-            justify-content: center;
-            align-items: center;
+        /* Spreadsheet Management */
+        #spreadsheet-management {
+            grid-column: 2;
+            grid-row: 1;
         }
         
-        .modal-content {
-            max-width: 90%;
-            max-height: 90%;
-            border-radius: 10px;
-            box-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+        /* Manual Data Entry */
+        #manual-data-entry {
+            grid-column: 1;
+            grid-row: 2;
         }
         
-        .close-modal {
+        /* Preview Section */
+        #preview {
+            grid-column: 2;
+            grid-row: 2;
+        }
+        
+        .footer {
             position: absolute;
-            top: 20px;
-            right: 30px;
+            bottom: 20px;
+            left: 0;
+            right: 0;
+            text-align: center;
             color: white;
-            font-size: 50px;
+            font-size: 14px;
             font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
-            transition: color 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            color: #e74c3c;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Introduction - Kiri Atas -->
-        <div class="section" style="grid-column: 1; grid-row: 1;">
+        <!-- Introduction -->
+        <div class="section" id="introduction">
             <div class="section-title">Introduction</div>
             <div class="video-container">
-                <video autoplay muted loop>
-                    <source src="video/perkenalan.mp4" type="video/mp4">
-                </video>
+                <div class="video-placeholder">video/perkenalan</div>
             </div>
         </div>
         
-        <!-- Spreadsheet Management - Kanan Atas -->
-        <div class="section" style="grid-column: 2; grid-row: 1;">
-            <div class="section-title">Spreadsheet Management</div>
+        <!-- Spreadsheet Management -->
+        <div class="section" id="spreadsheet-management">
+            <div class="section-title">Spreadsheet management</div>
             <div class="video-container">
-                <video controls>
-                    <source src="video/spreadsheetmanagement.mp4" type="video/mp4">
-                </video>
+                <div class="video-placeholder">video/spreadsheetmanagement</div>
             </div>
-            <div class="preview-container">
-                <img src="images/before_spreadsheetmanajemen.jpg" alt="Before" class="preview-image" data-src="images/before_spreadsheetmanajemen.jpg">
-                <img src="images/after_spreadsheetmanagement.jpg" alt="After" class="preview-image" data-src="images/after_spreadsheetmanagement.jpg">
-            </div>
-        </div>
-        
-        <!-- Manual Data Entry - Kiri Bawah -->
-        <div class="section" style="grid-column: 1; grid-row: 2;">
-            <div class="section-title">Manual Data Entry</div>
-            <div class="video-container">
-                <video controls>
-                    <source src="video/manualdataentry.mp4" type="video/mp4">
-                </video>
-            </div>
-            <div class="preview-container">
-                <img src="images/before_manualdataentry.jpg" alt="Before" class="preview-image" data-src="images/before_manualdataentry.jpg">
-                <img src="images/after_manualdataentry.jpg" alt="After" class="preview-image" data-src="images/after_manualdataentry.jpg">
-            </div>
-        </div>
-        
-        <!-- Preview Section - Kanan Bawah -->
-        <div class="section" style="grid-column: 2; grid-row: 2;">
-            <div class="section-title">Preview</div>
+            
             <div class="preview-section">
-                <div class="preview-row">
-                    <div class="preview-label">Spreadsheet Management</div>
-                    <div class="preview-letters">
-                        <div class="letter-item">
-                            <div class="letter">A</div>
-                            <div class="letter-label">Before</div>
-                        </div>
-                        <div class="letter-item">
-                            <div class="letter">B</div>
-                            <div class="letter-label">After</div>
-                        </div>
+                <div class="preview-title">Preview spreadsheet management</div>
+                <div class="preview-images">
+                    <div class="preview-image">
+                        <div class="image-label">A</div>
                     </div>
-                </div>
-                <div class="preview-row">
-                    <div class="preview-label">Manual Data Entry</div>
-                    <div class="preview-letters">
-                        <div class="letter-item">
-                            <div class="letter">C</div>
-                            <div class="letter-label">Before</div>
-                        </div>
-                        <div class="letter-item">
-                            <div class="letter">D</div>
-                            <div class="letter-label">After</div>
-                        </div>
+                    <div class="preview-image">
+                        <div class="image-label">B</div>
                     </div>
                 </div>
             </div>
         </div>
+        
+        <!-- Manual Data Entry -->
+        <div class="section" id="manual-data-entry">
+            <div class="section-title">Manual data entry</div>
+            <div class="video-container">
+                <div class="video-placeholder">Video/manualdatcentry</div>
+            </div>
+            
+            <div class="preview-section">
+                <div class="preview-title">Preview manual data entry</div>
+                <div class="preview-images">
+                    <div class="preview-image">
+                        <div class="image-label">C</div>
+                    </div>
+                    <div class="preview-image">
+                        <div class="image-label">D</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Preview Section -->
+        <div class="section" id="preview">
+            <div class="section-title">Preview</div>
+            
+            <div class="preview-section">
+                <div class="preview-title">Preview spreadsheet management</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">
+                    Ini untuk preview images A dan B<br>
+                    Lokasi :<br>
+                    images/before_spreadsheetmanagement<br>
+                    images/after_spreadsheetmanagement
+                </div>
+                <div class="letters-row">
+                    <div class="letter">A</div>
+                    <div class="letter">B</div>
+                </div>
+            </div>
+            
+            <div class="preview-section" style="margin-top: 20px;">
+                <div class="preview-title">Preview manual data entry</div>
+                <div style="font-size: 12px; margin-bottom: 10px;">
+                    Ini untuk preview images C dan D<br>
+                    Lokasi :<br>
+                    images/before_manualdatcentry<br>
+                    images/after_manualdatcentry
+                </div>
+                <div class="letters-row">
+                    <div class="letter">C</div>
+                    <div class="letter">D</div>
+                </div>
+            </div>
+        </div>
     </div>
-    
-    <!-- Modal untuk gambar -->
-    <div id="image-modal" class="modal">
-        <span class="close-modal">&times;</span>
-        <img class="modal-content" id="modal-image">
+
+    <div class="footer">
+        Professional Data Entry | Excel & Web Research | Accurate | Quick & Precise
     </div>
-    
-    <script>
-        // Modal functionality for images
-        const imageModal = document.getElementById('image-modal');
-        const modalImage = document.getElementById('modal-image');
-        const closeModal = document.querySelector('.close-modal');
-        
-        // Add click event to all preview images
-        document.querySelectorAll('.preview-image').forEach(img => {
-            img.addEventListener('click', function() {
-                modalImage.src = this.getAttribute('data-src');
-                imageModal.style.display = 'flex';
-            });
-        });
-        
-        // Close modal when clicking the X
-        closeModal.addEventListener('click', function() {
-            imageModal.style.display = 'none';
-        });
-        
-        // Close modal when clicking outside the content
-        window.addEventListener('click', function(event) {
-            if (event.target === imageModal) {
-                imageModal.style.display = 'none';
-            }
-        });
-    </script>
 </body>
 </html>
