@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bhakoolan - Tutorial Management</title>
+    <title>Bhakoolan</title>
     <style>
-        /* Reset dan dasar */
         * {
             margin: 0;
             padding: 0;
@@ -14,59 +13,45 @@
         
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-            margin: 1cm;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url('images/background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            background-attachment: fixed;
         }
         
-        /* Container utama */
         .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background-color: rgba(255, 255, 255, 0.9);
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            height: 100vh;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            grid-template-rows: 1fr 1fr;
+            gap: 10px;
+            padding: 10px;
         }
         
-        /* Header sections */
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 30px;
+        .section {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin-bottom: 10px;
             color: #2c3e50;
             text-align: center;
-            padding-bottom: 15px;
-            border-bottom: 3px solid #3498db;
         }
         
-        h2 {
-            font-size: 2rem;
-            margin: 40px 0 20px;
-            color: #3498db;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #eaeaea;
-        }
-        
-        h3 {
-            font-size: 1.5rem;
-            margin: 30px 0 15px;
-            color: #2980b9;
-        }
-        
-        /* Video container */
         .video-container {
-            position: relative;
-            width: 100%;
-            height: 400px;
-            margin: 25px 0;
+            flex: 1;
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-            border: 2px solid #3498db;
+            margin-bottom: 10px;
         }
         
         .video-container video {
@@ -75,64 +60,23 @@
             object-fit: cover;
         }
         
-        /* Preview sections */
-        .preview-section {
-            margin: 40px 0;
-            padding: 25px;
-            background-color: rgba(248, 249, 250, 0.8);
-            border-radius: 10px;
-            border-left: 5px solid #2ecc71;
-        }
-        
-        .preview-title {
-            font-size: 1.4rem;
-            margin-bottom: 20px;
-            color: #27ae60;
-            font-weight: bold;
-        }
-        
         .preview-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 30px;
-            margin: 20px 0;
-            justify-content: center;
-        }
-        
-        .preview-item {
-            flex: 1;
-            min-width: 300px;
-            text-align: center;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s ease;
-        }
-        
-        .preview-item:hover {
-            transform: translateY(-5px);
-        }
-        
-        .image-label {
-            font-size: 1.2rem;
-            font-weight: bold;
-            margin: 10px 0;
-            color: #2c3e50;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            height: 120px;
         }
         
         .preview-image {
             width: 100%;
-            height: 250px;
+            height: 100%;
             object-fit: cover;
             border-radius: 6px;
             cursor: pointer;
-            transition: transform 0.3s ease;
             border: 2px solid #bdc3c7;
         }
         
         .preview-image:hover {
-            transform: scale(1.05);
             border-color: #3498db;
         }
         
@@ -154,7 +98,6 @@
             max-width: 90%;
             max-height: 90%;
             border-radius: 8px;
-            box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
         }
         
         .close-modal {
@@ -166,129 +109,81 @@
             font-weight: bold;
             cursor: pointer;
             z-index: 1001;
-            transition: color 0.3s ease;
-        }
-        
-        .close-modal:hover {
-            color: #e74c3c;
-        }
-        
-        /* Responsif */
-        @media (max-width: 768px) {
-            body {
-                margin: 0.5cm;
-            }
-            
-            .preview-container {
-                flex-direction: column;
-            }
-            
-            .video-container {
-                height: 250px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            h2 {
-                font-size: 1.7rem;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Introduction Section -->
-        <section id="introduction">
-            <h1>Introduction</h1>
-                      
+        <!-- Introduction -->
+        <div class="section" style="grid-column: 1; grid-row: 1;">
+            <div class="section-title">Introduction</div>
             <div class="video-container">
-                <video id="intro-video" autoplay muted loop>
+                <video autoplay muted loop>
                     <source src="video/perkenalan.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
-            
-            <p><strong>Lokasi:</strong> video/perkenalan</p>
-            <p><em>Video pertama - Auto play tanpa kontrol, loop terus menerus</em></p>
-        </section>
+        </div>
         
-        <!-- Spreadsheet Management Section -->
-        <section id="spreadsheet-management">
-            <h2>Spreadsheet Management</h2>
-            
+        <!-- Spreadsheet Management -->
+        <div class="section" style="grid-column: 2; grid-row: 1;">
+            <div class="section-title">Spreadsheet Management</div>
             <div class="video-container">
-                <video id="spreadsheet-video" controls>
+                <video controls>
                     <source src="video/spreadsheetmanagement.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
-            
-            <p><strong>Lokasi:</strong> video/spreadsheetmanagement</p>
-            <p><em>Video kedua - Dapat diklik untuk membesar dengan kontrol player</em></p>
-            
-            <div class="preview-section">
-                <div class="preview-title">Preview Spreadsheet Management</div>
-                <p>Ini untuk preview images A dan B</p>
-                <p><strong>Lokasi:</strong></p>
-                <ul>
-                    <li>Images/before_spreadsheetmanagement</li>
-                    <li>Images/after_spreadsheetmanagement</li>
-                </ul>
-                
-                <div class="preview-container">
-                    <div class="preview-item">
-                        <div class="image-label">A</div>
-                        <img src="images/before_spreadsheetmanagement.jpg" alt="Before Spreadsheet Management" class="preview-image" data-src="images/before_spreadsheetmanagement.jpg">
-                        <p>Before</p>
-                    </div>
-                    <div class="preview-item">
-                        <div class="image-label">B</div>
-                        <img src="images/after_spreadsheetmanagement.jpg" alt="After Spreadsheet Management" class="preview-image" data-src="images/after_spreadsheetmanagement.jpg">
-                        <p>After</p>
-                    </div>
-                </div>
+            <div class="preview-container">
+                <img src="images/before_spreadsheetmanajemen.jpg" alt="Before" class="preview-image" data-src="images/before_spreadsheetmanajemen.jpg">
+                <img src="images/after_spreadsheetmanagement.jpg" alt="After" class="preview-image" data-src="images/after_spreadsheetmanagement.jpg">
             </div>
-        </section>
+        </div>
         
-        <!-- Manual Data Entry Section -->
-        <section id="manual-data-entry">
-            <h2>Manual Data Entry</h2>
-            
+        <!-- Manual Data Entry -->
+        <div class="section" style="grid-column: 1; grid-row: 2;">
+            <div class="section-title">Manual Data Entry</div>
             <div class="video-container">
-                <video id="manual-video" controls>
+                <video controls>
                     <source src="video/manualdataentry.mp4" type="video/mp4">
-                    Browser Anda tidak mendukung pemutaran video.
                 </video>
             </div>
-            
-            <p><strong>Lokasi:</strong> video/manualdataentry</p>
-            <p><em>Video ketiga - Dapat diklik untuk membesar dengan kontrol player</em></p>
-            
-            <div class="preview-section">
-                <div class="preview-title">Preview Manual Data Entry</div>
-                <p>Ini untuk preview images C dan D</p>
-                <p><strong>Lokasi:</strong></p>
-                <ul>
-                    <li>Images/before_manualdatentry</li>
-                    <li>Images/after_manualdataentry</li>
-                </ul>
-                
-                <div class="preview-container">
-                    <div class="preview-item">
-                        <div class="image-label">C</div>
-                        <img src="images/before_manualdataentry.jpg" alt="Before Manual Data Entry" class="preview-image" data-src="images/before_manualdataentry.jpg">
-                        <p>Before</p>
+            <div class="preview-container">
+                <img src="images/before_manualdataentry.jpg" alt="Before" class="preview-image" data-src="images/before_manualdataentry.jpg">
+                <img src="images/after_manualdataentry.jpg" alt="After" class="preview-image" data-src="images/after_manualdataentry.jpg">
+            </div>
+        </div>
+        
+        <!-- Preview Section -->
+        <div class="section" style="grid-column: 2; grid-row: 2;">
+            <div class="section-title">Preview</div>
+            <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-weight: bold; margin-bottom: 10px;">Spreadsheet Management</div>
+                    <div style="display: flex; gap: 20px; margin-bottom: 20px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">A</div>
+                            <div>Before</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">B</div>
+                            <div>After</div>
+                        </div>
                     </div>
-                    <div class="preview-item">
-                        <div class="image-label">D</div>
-                        <img src="images/after_manualdataentry.jpg" alt="After Manual Data Entry" class="preview-image" data-src="images/after_manualdataentry.jpg">
-                        <p>After</p>
+                </div>
+                <div style="text-align: center;">
+                    <div style="font-weight: bold; margin-bottom: 10px;">Manual Data Entry</div>
+                    <div style="display: flex; gap: 20px;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">C</div>
+                            <div>Before</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 5px;">D</div>
+                            <div>After</div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
     </div>
     
     <!-- Modal untuk gambar -->
@@ -297,22 +192,11 @@
         <img class="modal-content" id="modal-image">
     </div>
     
-    <!-- Modal untuk video -->
-    <div id="video-modal" class="modal">
-        <span class="close-modal">&times;</span>
-        <video class="modal-content" id="modal-video" controls>
-            Browser Anda tidak mendukung pemutaran video.
-        </video>
-    </div>
-    
     <script>
-        // Set background image
-        document.body.style.backgroundImage = "url('images/background.jpg')";
-        
         // Modal functionality for images
         const imageModal = document.getElementById('image-modal');
         const modalImage = document.getElementById('modal-image');
-        const closeModal = document.querySelectorAll('.close-modal');
+        const closeModal = document.querySelector('.close-modal');
         
         // Add click event to all preview images
         document.querySelectorAll('.preview-image').forEach(img => {
@@ -322,37 +206,15 @@
             });
         });
         
-        // Modal functionality for videos
-        const videoModal = document.getElementById('video-modal');
-        const modalVideo = document.getElementById('modal-video');
-        
-        // Add click event to video containers (except intro video)
-        document.querySelectorAll('.video-container:not(:first-child)').forEach(container => {
-            container.addEventListener('click', function() {
-                const video = this.querySelector('video');
-                modalVideo.src = video.querySelector('source').src;
-                videoModal.style.display = 'flex';
-                modalVideo.play();
-            });
+        // Close modal when clicking the X
+        closeModal.addEventListener('click', function() {
+            imageModal.style.display = 'none';
         });
         
-        // Close modals when clicking the X
-        closeModal.forEach(closeBtn => {
-            closeBtn.addEventListener('click', function() {
-                imageModal.style.display = 'none';
-                videoModal.style.display = 'none';
-                modalVideo.pause();
-            });
-        });
-        
-        // Close modals when clicking outside the content
+        // Close modal when clicking outside the content
         window.addEventListener('click', function(event) {
             if (event.target === imageModal) {
                 imageModal.style.display = 'none';
-            }
-            if (event.target === videoModal) {
-                videoModal.style.display = 'none';
-                modalVideo.pause();
             }
         });
     </script>
