@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Boenchit</title>
+    <title>Bhakoolan</title>
     <style>
         * {
             margin: 0;
@@ -19,34 +19,40 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             flex-direction: column;
         }
         
         .header {
-            text-align: center;
             color: white;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .header h1 {
+            font-size: 24px;
+            font-weight: bold;
         }
         
         .main-container {
             display: grid;
             grid-template-columns: 2fr 1fr;
-            gap: 20px;
+            gap: 15px;
             flex: 1;
+            height: calc(100vh - 100px);
         }
         
         .left-section {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
         
         .right-section {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
         }
         
         .section {
@@ -57,7 +63,7 @@
         }
         
         .section-title {
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             margin-bottom: 10px;
             color: #333;
@@ -66,15 +72,14 @@
         
         /* Video Styles */
         .video-large {
-            height: 250px;
+            height: 200px;
             background: #000;
             border-radius: 8px;
             overflow: hidden;
-            cursor: pointer;
         }
         
         .video-small {
-            height: 120px;
+            height: 100px;
             background: #000;
             border-radius: 8px;
             overflow: hidden;
@@ -87,9 +92,17 @@
             object-fit: cover;
         }
         
+        /* Small Videos Container */
+        .small-videos-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 10px;
+        }
+        
         /* Preview Styles */
         .preview-large {
-            height: 150px;
+            height: 120px;
             background: #f8f8f8;
             border-radius: 8px;
             margin-bottom: 10px;
@@ -111,7 +124,7 @@
         }
         
         .thumbnail {
-            height: 80px;
+            height: 70px;
             background: #f8f8f8;
             border-radius: 6px;
             overflow: hidden;
@@ -140,9 +153,10 @@
         .footer {
             text-align: center;
             color: white;
-            margin-top: 20px;
+            margin-top: 10px;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 12px;
+            padding: 5px;
         }
         
         /* Modal Styles */
@@ -174,6 +188,20 @@
             font-size: 40px;
             cursor: pointer;
         }
+        
+        /* Manual Data Entry Layout Fix */
+        .manual-preview-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .manual-thumbnails {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: auto;
+        }
     </style>
 </head>
 <body>
@@ -187,21 +215,21 @@
             <!-- Introduction - Video Besar -->
             <div class="section">
                 <div class="section-title">Introduction</div>
-                <div class="video-large" id="intro-video">
+                <div class="video-large">
                     <video autoplay muted loop>
                         <source src="video/perkenalan.mp4" type="video/mp4">
                     </video>
                 </div>
             </div>
             
-            <!-- Two Small Videos -->
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <!-- Two Small Videos - Dipindah lebih ke bawah -->
+            <div class="small-videos-container">
                 <!-- Spreadsheet Management -->
                 <div class="section">
                     <div class="section-title">Spreadsheet Management</div>
                     <div class="video-small" id="spreadsheet-video">
-                        <video>
-                            <source src="video/spreadsheetmanajemen.mp4" type="video/mp4">
+                        <video controls>
+                            <source src="video/spreadsheetmanagement.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -210,8 +238,8 @@
                 <div class="section">
                     <div class="section-title">Manual Data Entry</div>
                     <div class="video-small" id="manual-video">
-                        <video>
-                            <source src="video/manualdataentry.mp4" type="video/mp4">
+                        <video controls>
+                            <source src="video/manualdatacentry.mp4" type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -224,37 +252,42 @@
             <div class="section">
                 <div class="section-title">Preview Spreadsheet Management</div>
                 <div class="preview-large" id="preview-spreadsheet">
-                    <img src="images/before_spreadsheetmanajemen.jpg" alt="Preview Spreadsheet">
+                    <img src="images/before_spreadsheetmanagement.jpg" alt="Preview Spreadsheet">
                 </div>
                 <div class="thumbnails">
                     <div class="thumbnail-item">
-                        <div class="thumbnail active" data-preview="images/before_spreadsheetmanajemen.jpg">
-                            <img src="images/before_spreadsheetmanajemen.jpg" alt="Before">
+                        <div class="thumbnail active" data-preview="images/before_spreadsheetmanagement.jpg">
+                            <img src="images/before_spreadsheetmanagement.jpg" alt="Before">
                         </div>
-                        </div>
+                        <div class="thumbnail-label">A</div>
+                    </div>
                     <div class="thumbnail-item">
-                        <div class="thumbnail" data-preview="images/after_spreadsheetmanajemen.jpg">
-                            <img src="images/after_spreadsheetmanajemen.jpg" alt="After">
+                        <div class="thumbnail" data-preview="images/after_spreadsheetmanagement.jpg">
+                            <img src="images/after_spreadsheetmanagement.jpg" alt="After">
                         </div>
-                       </div>
+                        <div class="thumbnail-label">B</div>
+                    </div>
                 </div>
             </div>
             
-            <!-- Preview Manual Data Entry -->
+            <!-- Preview Manual Data Entry - Layout disamakan dengan Spreadsheet -->
             <div class="section">
                 <div class="section-title">Preview Manual Data Entry</div>
                 <div class="preview-large" id="preview-manual">
-                    <img src="images/before_manualdataentry.jpg" alt="Preview Manual">
+                    <img src="images/before_manualdatacentry.jpg" alt="Preview Manual">
                 </div>
                 <div class="thumbnails">
                     <div class="thumbnail-item">
-                        <div class="thumbnail active" data-preview="images/before_manualdataentry.jpg">
-                            <img src="images/before_manualdataentry.jpg" alt="Before">
+                        <div class="thumbnail active" data-preview="images/before_manualdatacentry.jpg">
+                            <img src="images/before_manualdatacentry.jpg" alt="Before">
                         </div>
-                      <div class="thumbnail-item">
-                        <div class="thumbnail" data-preview="images/after_manualdataentry.jpg">
-                            <img src="images/after_manualdataentry.jpg" alt="After">
+                        <div class="thumbnail-label">C</div>
+                    </div>
+                    <div class="thumbnail-item">
+                        <div class="thumbnail" data-preview="images/after_manualdatacentry.jpg">
+                            <img src="images/after_manualdatacentry.jpg" alt="After">
                         </div>
+                        <div class="thumbnail-label">D</div>
                     </div>
                 </div>
             </div>
@@ -263,14 +296,6 @@
     
     <div class="footer">
         Professional Data Entry | Excel & Web Research | Accurate | Quick & Precise
-    </div>
-    
-    <!-- Modal untuk Video -->
-    <div class="modal" id="video-modal">
-        <span class="close-modal">&times;</span>
-        <video class="modal-content" controls>
-            <source src="" type="video/mp4">
-        </video>
     </div>
     
     <!-- Modal untuk Gambar -->
@@ -298,19 +323,6 @@
             });
         });
         
-        // Video modal functionality
-        const videoModal = document.getElementById('video-modal');
-        const modalVideo = videoModal.querySelector('video');
-        
-        document.querySelectorAll('.video-small').forEach(videoContainer => {
-            videoContainer.addEventListener('click', function() {
-                const video = this.querySelector('video');
-                modalVideo.src = video.querySelector('source').src;
-                videoModal.style.display = 'flex';
-                modalVideo.play();
-            });
-        });
-        
         // Image modal functionality
         const imageModal = document.getElementById('image-modal');
         const modalImage = imageModal.querySelector('img');
@@ -323,28 +335,24 @@
             });
         });
         
-        // Close modals
+        // Close modal
         document.querySelectorAll('.close-modal').forEach(closeBtn => {
             closeBtn.addEventListener('click', function() {
-                videoModal.style.display = 'none';
                 imageModal.style.display = 'none';
-                modalVideo.pause();
             });
         });
         
         // Close modal when clicking outside
         window.addEventListener('click', function(event) {
-            if (event.target === videoModal) {
-                videoModal.style.display = 'none';
-                modalVideo.pause();
-            }
             if (event.target === imageModal) {
                 imageModal.style.display = 'none';
             }
         });
+
+        // Fix background image to show full content
+        document.body.style.backgroundSize = "cover";
+        document.body.style.backgroundPosition = "center";
+        document.body.style.backgroundAttachment = "fixed";
     </script>
 </body>
 </html>
-
-
-
