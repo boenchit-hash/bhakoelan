@@ -52,7 +52,7 @@
         .right-section {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px; /* Gap diperkecil biar preview naik */
         }
         
         .section {
@@ -194,7 +194,7 @@
             border-radius: 8px;
         }
         
-        /* Modal Styles */
+        /* Modal Styles - DIPERBAIKI */
         .modal {
             display: none;
             position: fixed;
@@ -209,10 +209,15 @@
         }
         
         .modal-content {
-            max-width: 85%;
-            max-height: 85%;
+            max-width: 70%; /* Tidak fullscreen */
+            max-height: 70%; /* Tidak fullscreen */
             border-radius: 12px;
             box-shadow: 0 0 40px rgba(255,255,255,0.2);
+        }
+        
+        #video-modal .modal-content {
+            width: 70%; /* Lebar video modal */
+            max-width: 800px; /* Maksimal lebar */
         }
         
         .close-modal {
@@ -224,10 +229,18 @@
             cursor: pointer;
             font-weight: bold;
             transition: color 0.3s ease;
+            z-index: 1001;
         }
         
         .close-modal:hover {
             color: #e74c3c;
+        }
+
+        /* Preview sections dinaikkan */
+        .preview-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
     </style>
 </head>
@@ -253,7 +266,7 @@
                     <div>
                         <div class="section-title">Spreadsheet Management</div>
                         <div class="video-horizontal" id="spreadsheet-video">
-                            <video controls>
+                            <video>
                                 <source src="video/spreadsheetmanajemen.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -261,7 +274,7 @@
                     <div>
                         <div class="section-title">Manual Data Entry</div>
                         <div class="video-horizontal" id="manual-video">
-                            <video controls>
+                            <video>
                                 <source src="video/manualdataentry.mp4" type="video/mp4">
                             </video>
                         </div>
@@ -273,7 +286,7 @@
         <!-- Right Section - Previews -->
         <div class="right-section">
             <!-- Preview Spreadsheet Management -->
-            <div class="section">
+            <div class="section preview-section">
                 <div class="section-title">Preview Spreadsheet Management</div>
                 <div class="preview-container">
                     <div class="preview-large" id="preview-spreadsheet">
@@ -297,7 +310,7 @@
             </div>
             
             <!-- Preview Manual Data Entry -->
-            <div class="section">
+            <div class="section preview-section">
                 <div class="section-title">Preview Manual Data Entry</div>
                 <div class="preview-container">
                     <div class="preview-large" id="preview-manual">
@@ -332,6 +345,14 @@
         <img class="modal-content" src="" alt="Preview Image">
     </div>
 
+    <!-- Modal untuk Video - DITAMBAHKAN -->
+    <div class="modal" id="video-modal">
+        <span class="close-modal">&times;</span>
+        <video class="modal-content" controls>
+            <source src="" type="video/mp4">
+        </video>
+    </div>
+
     <script>
         // Thumbnail click functionality
         document.querySelectorAll('.thumbnail').forEach(thumb => {
@@ -362,11 +383,28 @@
                 imageModal.style.display = 'flex';
             });
         });
+
+        // VIDEO MODAL FUNCTIONALITY - DITAMBAHKAN
+        const videoModal = document.getElementById('video-modal');
+        const modalVideo = videoModal.querySelector('video');
+        
+        document.querySelectorAll('.video-horizontal').forEach(videoContainer => {
+            videoContainer.addEventListener('click', function() {
+                const video = this.querySelector('video');
+                const videoSource = video.querySelector('source').src;
+                modalVideo.src = videoSource;
+                videoModal.style.display = 'flex';
+                modalVideo.play();
+            });
+        });
         
         // Close modal
         document.querySelectorAll('.close-modal').forEach(closeBtn => {
             closeBtn.addEventListener('click', function() {
                 imageModal.style.display = 'none';
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
             });
         });
         
@@ -375,9 +413,12 @@
             if (event.target === imageModal) {
                 imageModal.style.display = 'none';
             }
+            if (event.target === videoModal) {
+                videoModal.style.display = 'none';
+                modalVideo.pause();
+                modalVideo.currentTime = 0;
+            }
         });
     </script>
 </body>
 </html>
-
-
