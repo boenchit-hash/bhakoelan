@@ -52,7 +52,7 @@
         .right-section {
             display: flex;
             flex-direction: column;
-            gap: 15px; /* Gap diperkecil biar preview naik */
+            gap: 15px;
         }
         
         .section {
@@ -73,9 +73,9 @@
             border-bottom: 2px solid #3498db;
         }
         
-        /* Video Styles - Diperbesar */
+        /* Video Styles */
         .video-large {
-            height: 280px;
+            height: 250px; /* Sedikit dikurangi */
             background: #000;
             border-radius: 10px;
             overflow: hidden;
@@ -86,11 +86,11 @@
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 10px;
+            margin-top: 20px; /* Ditambah margin top untuk turunkan posisi */
         }
         
         .video-horizontal {
-            height: 160px;
+            height: 140px; /* Sedikit dikurangi */
             background: #000;
             border-radius: 10px;
             overflow: hidden;
@@ -118,7 +118,7 @@
         }
         
         .preview-large {
-            height: 180px;
+            height: 160px; /* Sedikit dikurangi */
             background: #f8f8f8;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -147,7 +147,7 @@
         }
         
         .thumbnail {
-            height: 90px;
+            height: 80px; /* Sedikit dikurangi */
             background: #f8f8f8;
             border-radius: 8px;
             overflow: hidden;
@@ -181,6 +181,10 @@
         
         .thumbnail-container {
             text-align: center;
+            height: 110px; /* Tinggi container termasuk label */
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end; /* Agar konten di bagian bawah */
         }
         
         .footer {
@@ -194,7 +198,7 @@
             border-radius: 8px;
         }
         
-        /* Modal Styles - DIPERBAIKI */
+        /* Modal Styles */
         .modal {
             display: none;
             position: fixed;
@@ -209,15 +213,15 @@
         }
         
         .modal-content {
-            max-width: 70%; /* Tidak fullscreen */
-            max-height: 70%; /* Tidak fullscreen */
+            max-width: 70%;
+            max-height: 70%;
             border-radius: 12px;
             box-shadow: 0 0 40px rgba(255,255,255,0.2);
         }
         
         #video-modal .modal-content {
-            width: 70%; /* Lebar video modal */
-            max-width: 800px; /* Maksimal lebar */
+            width: 70%;
+            max-width: 800px;
         }
         
         .close-modal {
@@ -236,24 +240,31 @@
             color: #e74c3c;
         }
 
-        /* Preview sections dinaikkan */
         .preview-section {
             flex: 1;
             display: flex;
             flex-direction: column;
         }
+
+        /* Container untuk alignment */
+        .video-section-container {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
     </style>
 </head>
 <body>
     <div class="header">
-        <h1>boenhit</h1>
+        <h1>boenchit</h1>
+        <h2>we enter data, you unlock result</h2>
     </div>
     
     <div class="main-container">
         <!-- Left Section - Videos -->
         <div class="left-section">
             <!-- Introduction - Video Besar -->
-            <div class="section">
+            <div class="section video-section-container">
                 <div class="section-title">Introduction</div>
                 <div class="video-large">
                     <video autoplay muted loop>
@@ -261,8 +272,8 @@
                     </video>
                 </div>
                 
-                <!-- Two Videos Horizontal - Diperbesar -->
-                <div class="videos-horizontal">
+                <!-- Two Videos Horizontal - Diposisikan lebih ke bawah -->
+                <div class="videos-horizontal" style="margin-top: auto;">
                     <div>
                         <div class="section-title">Spreadsheet Management</div>
                         <div class="video-horizontal" id="spreadsheet-video">
@@ -345,7 +356,7 @@
         <img class="modal-content" src="" alt="Preview Image">
     </div>
 
-    <!-- Modal untuk Video - DITAMBAHKAN -->
+    <!-- Modal untuk Video -->
     <div class="modal" id="video-modal">
         <span class="close-modal">&times;</span>
         <video class="modal-content" controls>
@@ -384,7 +395,7 @@
             });
         });
 
-        // VIDEO MODAL FUNCTIONALITY - DITAMBAHKAN
+        // VIDEO MODAL FUNCTIONALITY
         const videoModal = document.getElementById('video-modal');
         const modalVideo = videoModal.querySelector('video');
         
