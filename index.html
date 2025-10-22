@@ -73,24 +73,24 @@
             border-bottom: 2px solid #3498db;
         }
         
-        /* Video Styles */
+        /* Video Styles - DIPERBAIKI */
         .video-large {
-            height: 250px; /* Sedikit dikurangi */
+            height: 320px; /* DIPERBESAR */
             background: #000;
             border-radius: 10px;
             overflow: hidden;
-            margin-bottom: 15px;
+            margin-bottom: 10px; /* DIPERKECIL */
         }
         
         .videos-horizontal {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 20px;
-            margin-top: 20px; /* Ditambah margin top untuk turunkan posisi */
+            margin-top: 10px; /* DIPERKECIL */
         }
         
         .video-horizontal {
-            height: 140px; /* Sedikit dikurangi */
+            height: 140px;
             background: #000;
             border-radius: 10px;
             overflow: hidden;
@@ -118,7 +118,7 @@
         }
         
         .preview-large {
-            height: 160px; /* Sedikit dikurangi */
+            height: 160px;
             background: #f8f8f8;
             border-radius: 10px;
             margin-bottom: 15px;
@@ -147,7 +147,7 @@
         }
         
         .thumbnail {
-            height: 80px; /* Sedikit dikurangi */
+            height: 80px;
             background: #f8f8f8;
             border-radius: 8px;
             overflow: hidden;
@@ -181,10 +181,10 @@
         
         .thumbnail-container {
             text-align: center;
-            height: 110px; /* Tinggi container termasuk label */
+            height: 110px;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end; /* Agar konten di bagian bawah */
+            justify-content: flex-end;
         }
         
         .footer {
@@ -246,7 +246,6 @@
             flex-direction: column;
         }
 
-        /* Container untuk alignment */
         .video-section-container {
             display: flex;
             flex-direction: column;
@@ -272,8 +271,8 @@
                     </video>
                 </div>
                 
-                <!-- Two Videos Horizontal - Diposisikan lebih ke bawah -->
-                <div class="videos-horizontal" style="margin-top: auto;">
+                <!-- Two Videos Horizontal - Space dikurangi -->
+                <div class="videos-horizontal" style="margin-top: 10px;">
                     <div>
                         <div class="section-title">Spreadsheet Management</div>
                         <div class="video-horizontal" id="spreadsheet-video">
@@ -433,9 +432,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
-
